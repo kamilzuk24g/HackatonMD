@@ -5,7 +5,10 @@
       "title": "Eventovo App",
       "icon": "fal fa-info-circle",
       "items": [
-
+        {
+          "title": "Grupy",
+          "href": "group_index.html"
+        },
         {
           "title": "Twoje wydarzenia",
           "href": "eventovo_myevents.html"
@@ -13,6 +16,10 @@
         {
           "title": "Nowe wydarzenie",
           "href": "eventovo_addevent.html"
+        },
+        {
+          "title": "Moje parametry",
+          "href": "eventovo_myparameters.html"
         }
       ]
     },

@@ -10,5 +10,6 @@ namespace SmartAdmin.WebUI.Controllers
     {
         public IActionResult MyEvents() => View();
         public IActionResult AddEvent() => View();
+        public IActionResult MyParameters() => View();
     }
 }

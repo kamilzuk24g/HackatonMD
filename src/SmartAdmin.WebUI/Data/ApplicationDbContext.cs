@@ -1,13 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-
 namespace SmartAdmin.WebUI.Data
 {
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
+    using SmartAdmin.WebUI.Data.Models;
+
     public class ApplicationDbContext : IdentityDbContext
     {
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
