@@ -11,13 +11,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SmartAdmin.WebUI.Controllers
 {
-    using SmartAdmin.WebUI.Data;
+    using SmartAdmin.WebUI.ViewModels;
 
     public class MyParametersController : Controller
     {
-        public IActionResult MyParameters()
+        public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Post(MyParametersViewModel viewModel)
+        {
+            return View("/Views/MyParameters/index.cshtml", viewModel);
         }
     }
 }

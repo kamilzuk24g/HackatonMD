@@ -40,9 +40,9 @@ namespace SmartAdmin.WebUI
                     connectionString,
                     sqlOptions =>
                     {
-                        sqlOptions.MigrationsAssembly("SmartAdmin.WebUI");                        
+                        sqlOptions.MigrationsAssembly("SmartAdmin.WebUI");
                     }));
-                
+
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -79,7 +79,7 @@ namespace SmartAdmin.WebUI
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 scope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
-            }            
+            }
 
             app.UseMvc(routes =>
             {
