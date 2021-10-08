@@ -33,7 +33,16 @@ namespace SmartAdmin.WebUI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddEntityFrameworkSqlServer();
+            services.AddDbContext<ApplicationDbContext>(
+                builder => builder.UseSqlServer(
+                    connectionString,
+                    sqlOptions =>
+                    {
+                        sqlOptions.MigrationsAssembly("SmartAdmin.WebUI");                        
+                    }));
+                
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -66,6 +75,11 @@ namespace SmartAdmin.WebUI
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                scope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+            }            
 
             app.UseMvc(routes =>
             {
