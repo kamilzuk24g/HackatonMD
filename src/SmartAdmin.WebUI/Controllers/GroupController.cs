@@ -43,7 +43,7 @@
                 var filteredGroups = this.applicationDbContext.Groups.Where(x => x.Name.IndexOf(viewModel.SearchValue, StringComparison.OrdinalIgnoreCase) > -1 ||
                 x.Description.IndexOf(viewModel.SearchValue, StringComparison.OrdinalIgnoreCase) > -1).Select(x => x.Id).ToList();
 
-                var groupsByTags = this.applicationDbContext.Tags.Where(x => x.Name.IndexOf(viewModel.SearchValue, StringComparison.OrdinalIgnoreCase) > -1).Select(x => x.GroupId).ToList();
+                var groupsByTags = this.applicationDbContext.Tags.Where(x => x.GroupId != null && x.Name.IndexOf(viewModel.SearchValue, StringComparison.OrdinalIgnoreCase) > -1).Select(x => x.GroupId.Value).ToList();
 
                 var union = filteredGroups.Union(groupsByTags).ToList();
 
@@ -102,7 +102,7 @@
             var viewModel = new GroupDetailsViewModel()
             {
                 Group = this.applicationDbContext.Groups.FirstOrDefault(x => x.Id == id),
-                Tags = this.applicationDbContext.Tags.Where(x => x.GroupId == id).ToList(),
+                Tags = this.applicationDbContext.Tags.Where(x => x.GroupId != null && x.GroupId == id).ToList(),
                 UserIsInGroup = this.applicationDbContext.UserInGroup.Any(x => x.GroupId == id && x.UserName == User.Identity.Name)
             };
 
