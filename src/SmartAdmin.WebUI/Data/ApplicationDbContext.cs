@@ -7,6 +7,7 @@ namespace SmartAdmin.WebUI.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Group> Groups { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
