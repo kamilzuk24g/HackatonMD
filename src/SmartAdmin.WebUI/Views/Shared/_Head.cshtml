@@ -1,11 +1,13 @@
 <meta charset="utf-8">
 <title>
-@if (ViewBag.Title?.Length > 0)
-{
-	<text>@ViewBag.Title - @ViewBag.Category1 - @ViewBag.App v@(ViewBag.Version)</text>
-} else {
-	@ViewBag.App
-}
+    @if (ViewBag.Title?.Length > 0)
+    {
+        <text>@ViewBag.Title - @ViewBag.Category1 - @ViewBag.App v@(ViewBag.Version)</text>
+    }
+    else
+    {
+        @ViewBag.App
+    }
 </title>
 <meta name="description" content="@ViewBag.Title">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,4 +17,38 @@
 <link rel="stylesheet" media="screen, print" href="~/css/vendors.bundle.css">
 <link rel="stylesheet" media="screen, print" href="~/css/app.bundle.css">
 <link rel="stylesheet" media="screen, print" href="~/css/site.css">
-<partial name="_Favicon"/>
+<link rel="stylesheet" media="screen, print" href="~/css/style.css">
+<!-- inne -->
+<link rel="stylesheet" href="~/assets/bootstrap_multiselect_master/dist/css/bootstrap-multiselect.css" type="text/css" />
+
+<!-- bootstrap & fontawesome -->
+@*<link rel="stylesheet" href="~/assets/css/bootstrap.css" />*@
+<link rel="stylesheet" href="~/components/font-awesome/css/font-awesome.css" />
+
+<!-- page specific plugin styles -->
+<link rel="stylesheet" href="~/components/_mod/jquery-ui.custom/jquery-ui.custom.css" />
+<link rel="stylesheet" href="~/components/chosen/chosen.css" />
+<link rel="stylesheet" href="~/components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" />
+<link rel="stylesheet" href="~/components/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="~/components/bootstrap-daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" href="~/components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" />
+<link rel="stylesheet" href="~/components/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css" />
+
+<partial name="_Favicon" />
+
+<!-- basic scripts -->
+<script src="~/components/jquery/dist/jquery.js"></script>
+
+<script src="~/components/bootstrap/dist/js/bootstrap.js"></script>
+
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='/components/_mod/jquery.mobile.custom/jquery.mobile.custom.js'>" + "<" + "/script>");
+</script>
+<script src="~/js/jquery.ba-throttle-debounce.js"></script>
+
+<!-- inne -->
+<script type="text/javascript" src="~/assets/bootstrap_multiselect_master/dist/js/bootstrap-multiselect.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="~/components/datatables/media/js/jquery.dataTables.js"></script>
+<script src="~/components/_mod/datatables/jquery.dataTables.bootstrap.js"></script>

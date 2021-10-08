@@ -1,0 +1,308 @@
+﻿@{
+    ViewData["Title"] = "It's Events time!";
+    ViewData["PageName"] = "tables_basic";
+    ViewData["Heading"] = "<i class='fal fa-clock text-primary'></i> It's Events time!";
+    ViewData["Category1"] = "Tables";
+    //ViewData["PageDescription"] = "Documentation and examples for opt-in styling of tables (given their prevelant use in JavaScript plugins) with Bootstrap.";
+}
+@section HeadBlock {}
+
+@{
+    //ViewData["Title"] = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    SmartAdmin.WebUI.Models.EventsListFilterModel filters = ViewData["filters"] as SmartAdmin.WebUI.Models.EventsListFilterModel;
+}
+
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+    jQuery(function ($) {
+        // combo
+        $('.combo_filtr').multiselect({
+            includeSelectAllOption: true,
+            buttonClass: 'combo_filtr button_combo_filtr',
+            //buttonWidth: '220px',
+            maxHeight: 300
+        });
+    })
+</script>
+
+<div class="row">
+
+    <div class="col-lg-12 col-xl-12">
+
+        <div id="panel-8" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    This could be Your events!
+                </h2>
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+
+                    <a asp-page="/events/EventsList"
+                       type="submit" class="btn btn-warning" style="width: 120px; padding: 5px !important;"
+                       asp-route-filters.pageIndex="@filters.pageIndex"
+                       asp-route-filters.sortColumn="@filters.sortColumn"
+                       asp-route-filters.filterDateFrom="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))"
+                       asp-route-filters.filterDateTo="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))"
+                       asp-route-filters.filterTitle="@filters.filterTitle"
+                       asp-route-filters.filterDesc="@filters.filterDesc"
+                       asp-route-filters.filterPlace="@filters.filterPlace"
+                       asp-route-filters.filterPriceFrom="@filters.filterPriceFrom"
+                       asp-route-filters.filterPriceTo="@filters.filterPriceTo"
+                       asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
+                       asp-route-filters.filterTimeTo="@filters.filterTimeTo"
+                       asp-route-filters.filterPeople="@filters.filterPeople"
+                       >
+                        <span class="fal fa-search-plus mr-1"></span>
+                        Filtruj
+                    </a>
+                    <a asp-page="/EventsList" type="button" class="btn btn-danger" style="width: 120px; padding: 5px !important;">
+                        <span class="fal fa-times mr-1"></span>
+                        Wyczyść filtry
+                    </a><br />
+
+                    @*<a asp-page="/Index">Wyczyść filtry</a>*@
+
+                    <div class="table-responsive-sm">
+                        <table class="table table-bordered m-0 table-hover">
+                            <thead class="bg-info-300 throw_filter">
+                                <tr>
+                                    <th>
+                                        <a class="th_btn" asp-page="/EventsList" asp-route-filters.pageIndex="@filters.pageIndex"
+                                           asp-route-filters.sortColumn="@(filters.sortColumn == "Id" ? "Id_d" : "Id")"
+                                           asp-route-filters.filterDateFrom="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterDateTo="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterTitle="@filters.filterTitle"
+                                           asp-route-filters.filterDesc="@filters.filterDesc"
+                                           asp-route-filters.filterPlace="@filters.filterPlace"
+                                           asp-route-filters.filterPriceFrom="@filters.filterPriceFrom"
+                                           asp-route-filters.filterPriceTo="@filters.filterPriceTo"
+                                           asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
+                                           asp-route-filters.filterTimeTo="@filters.filterTimeTo"
+                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                            Id
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a class="th_btn" asp-page="/EventsList" asp-route-filters.pageIndex="@filters.pageIndex"
+                                           asp-route-filters.sortColumn="@(filters.sortColumn == "Data" ? "Data_d" : "Data")"
+                                           asp-route-filters.filterDateFrom="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterDateTo="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterTitle="@filters.filterTitle"
+                                           asp-route-filters.filterDesc="@filters.filterDesc"
+                                           asp-route-filters.filterPlace="@filters.filterPlace"
+                                           asp-route-filters.filterPriceFrom="@filters.filterPriceFrom"
+                                           asp-route-filters.filterPriceTo="@filters.filterPriceTo"
+                                           asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
+                                           asp-route-filters.filterTimeTo="@filters.filterTimeTo"
+                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                            Data
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a class="th_btn" asp-page="/EventsList" asp-route-filters.pageIndex="@filters.pageIndex"
+                                           asp-route-filters.sortColumn="@(filters.sortColumn == "Title" ? "Title_d" : "Title")"
+                                           asp-route-filters.filterDateFrom="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterDateTo="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterTitle="@filters.filterTitle"
+                                           asp-route-filters.filterDesc="@filters.filterDesc"
+                                           asp-route-filters.filterPlace="@filters.filterPlace"
+                                           asp-route-filters.filterPriceFrom="@filters.filterPriceFrom"
+                                           asp-route-filters.filterPriceTo="@filters.filterPriceTo"
+                                           asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
+                                           asp-route-filters.filterTimeTo="@filters.filterTimeTo"
+                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                            Tytół
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a class="th_btn" asp-page="/EventsList" asp-route-filters.pageIndex="@filters.pageIndex"
+                                           asp-route-filters.sortColumn="@(filters.sortColumn == "Description" ? "Description_d" : "Description")"
+                                           asp-route-filters.filterDateFrom="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterDateTo="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterTitle="@filters.filterTitle"
+                                           asp-route-filters.filterDesc="@filters.filterDesc"
+                                           asp-route-filters.filterPlace="@filters.filterPlace"
+                                           asp-route-filters.filterPriceFrom="@filters.filterPriceFrom"
+                                           asp-route-filters.filterPriceTo="@filters.filterPriceTo"
+                                           asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
+                                           asp-route-filters.filterTimeTo="@filters.filterTimeTo"
+                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                            Opis
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a class="th_btn" asp-page="/EventsList" asp-route-filters.pageIndex="@filters.pageIndex"
+                                           asp-route-filters.sortColumn="@(filters.sortColumn == "Place" ? "Place_d" : "Place")"
+                                           asp-route-filters.filterDateFrom="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterDateTo="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterTitle="@filters.filterTitle"
+                                           asp-route-filters.filterDesc="@filters.filterDesc"
+                                           asp-route-filters.filterPlace="@filters.filterPlace"
+                                           asp-route-filters.filterPriceFrom="@filters.filterPriceFrom"
+                                           asp-route-filters.filterPriceTo="@filters.filterPriceTo"
+                                           asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
+                                           asp-route-filters.filterTimeTo="@filters.filterTimeTo"
+                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                            Miejsce
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a class="th_btn" asp-page="/EventsList" asp-route-filters.pageIndex="@filters.pageIndex"
+                                           asp-route-filters.sortColumn="@(filters.sortColumn == "Price" ? "Price_d" : "Price")"
+                                           asp-route-filters.filterDateFrom="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterDateTo="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterTitle="@filters.filterTitle"
+                                           asp-route-filters.filterDesc="@filters.filterDesc"
+                                           asp-route-filters.filterPlace="@filters.filterPlace"
+                                           asp-route-filters.filterPriceFrom="@filters.filterPriceFrom"
+                                           asp-route-filters.filterPriceTo="@filters.filterPriceTo"
+                                           asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
+                                           asp-route-filters.filterTimeTo="@filters.filterTimeTo"
+                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                            Koszt
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a class="th_btn" asp-page="/EventsList" asp-route-filters.pageIndex="@filters.pageIndex"
+                                           asp-route-filters.sortColumn="@(filters.sortColumn == "Time" ? "Time_d" : "Time")"
+                                           asp-route-filters.filterDateFrom="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterDateTo="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterTitle="@filters.filterTitle"
+                                           asp-route-filters.filterDesc="@filters.filterDesc"
+                                           asp-route-filters.filterPlace="@filters.filterPlace"
+                                           asp-route-filters.filterPriceFrom="@filters.filterPriceFrom"
+                                           asp-route-filters.filterPriceTo="@filters.filterPriceTo"
+                                           asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
+                                           asp-route-filters.filterTimeTo="@filters.filterTimeTo"
+                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                            Czas
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a class="th_btn" asp-page="/EventsList" asp-route-filters.pageIndex="@filters.pageIndex"
+                                           asp-route-filters.sortColumn="@(filters.sortColumn == "People" ? "People_d" : "People")"
+                                           asp-route-filters.filterDateFrom="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterDateTo="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterTitle="@filters.filterTitle"
+                                           asp-route-filters.filterDesc="@filters.filterDesc"
+                                           asp-route-filters.filterPlace="@filters.filterPlace"
+                                           asp-route-filters.filterPriceFrom="@filters.filterPriceFrom"
+                                           asp-route-filters.filterPriceTo="@filters.filterPriceTo"
+                                           asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
+                                           asp-route-filters.filterTimeTo="@filters.filterTimeTo"
+                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                            Osoby
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a class="th_btn" asp-page="/EventsList" asp-route-filters.pageIndex="@filters.pageIndex"
+                                           asp-route-filters.sortColumn="@(filters.sortColumn == "Tags" ? "Tags_d" : "Tags")"
+                                           asp-route-filters.filterDateFrom="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterDateTo="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))"
+                                           asp-route-filters.filterTitle="@filters.filterTitle"
+                                           asp-route-filters.filterDesc="@filters.filterDesc"
+                                           asp-route-filters.filterPlace="@filters.filterPlace"
+                                           asp-route-filters.filterPriceFrom="@filters.filterPriceFrom"
+                                           asp-route-filters.filterPriceTo="@filters.filterPriceTo"
+                                           asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
+                                           asp-route-filters.filterTimeTo="@filters.filterTimeTo"
+                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                            Tagi
+                                        </a>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th>
+                                        <input asp-for="@filters.filterDateFrom" type="date" id="tbxDateFrom" class="form-control tbx_filtr" value="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))" />
+                                        <input asp-for="@filters.filterDateTo" type="date" id="tbxDateTo" class="form-control tbx_filtr" value="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))" />
+                                    </th>
+                                    <th>
+                                        <input asp-for="@filters.filterTitle" id="tbxTitle" type="text" class="form-control tbx_filtr" value="@filters.filterTitle" />
+                                    </th>
+                                    <th>
+                                        <input asp-for="@filters.filterDesc" id="tbxDesc" type="text" class="form-control tbx_filtr" value="@filters.filterDesc" />
+                                    </th>
+                                    <th>
+                                        <input asp-for="@filters.filterPlace" id="tbxPlace" type="text" class="form-control tbx_filtr" value="@filters.filterPlace" />
+                                    </th>
+                                    <th>
+                                        <input asp-for="@filters.filterPriceFrom" id="tbxPriceFrom" type="text" class="form-control tbx_filtr" value="@filters.filterPriceFrom" />
+                                        <input asp-for="@filters.filterPriceTo" id="tbxPriceTo" type="text" class="form-control tbx_filtr" value="@filters.filterPriceTo" />
+                                    </th>
+                                    <th>
+                                        <input asp-for="@filters.filterTimeFrom" id="tbxTimeFrom" type="text" class="form-control tbx_filtr" value="@filters.filterTimeFrom" />
+                                        <input asp-for="@filters.filterTimeTo" id="tbxTimeTo" type="text" class="form-control tbx_filtr" value="@filters.filterTimeTo" />
+                                    </th>
+                                    <th>
+                                        <input asp-for="@filters.filterPeople" id="tbxPeople" type="text" class="form-control tbx_filtr" value="@filters.filterPeople" />
+                                    </th>
+                                    <th style="width: 120px;">
+                                        <div class="input-group">
+                                            <select asp-for="@filters.filterTags" id="comboTags" class="form-control custom-select multiselect dropdown-toggle combo_filtr button_combo_filtr input-sm" value="@filters.filterTags">
+                                                <option value="0">Wszystkie</option>
+                                                <option value="1">Aktualne</option>
+                                                <option value="2">Usunięte</option>
+                                            </select>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                    <td>Table cell</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ScriptsBlock {
+
+}
+
+
+
+
+

@@ -1,0 +1,74 @@
+.taeblka_ico
+{
+	float: right;
+	color: rgb(255, 255, 255);
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.role_chk td
+{
+    width: 50%;
+}
+.role_chk td input[type="checkbox"]
+{
+    margin-left: -10px;
+}
+.role_chk td label
+{
+    padding-left: 10px;
+}
+
+.role_chk 
+{
+    padding-left: 0px !important;
+}
+.rola_chk label
+{
+    padding-left: 0px;
+}
+
+
+.combo_filtr, .tbx_filtr
+{
+    padding: 0px !important;
+    width: 100% !important;
+    border: 1px solid #d5d5d5;
+    margin: 0px !important;
+    height: 20px;
+}
+
+.button_combo_filtr
+{
+    background-color: #ffffff;
+}
+
+.btn-group
+{
+    width: 100%;
+    /*max-width: 220px;*/
+}
+
+.th_btn
+{
+    display: block;
+    float: left;
+    min-width: 80%;
+}
+
+.tabpad4 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td
+{
+    padding: 4px;
+}
+
+.btn_print_last
+{
+    float: right;
+    margin-top: 2px;
+    margin-right: 2px;
+}
+.btn_print_next
+{
+    float: right;
+    margin-top: 2px;
+}
