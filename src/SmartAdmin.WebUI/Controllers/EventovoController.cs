@@ -9,5 +9,7 @@ namespace SmartAdmin.WebUI.Controllers
     public class EventovoController : Controller
     {
         public IActionResult MyEvents() => View();
+
+        public IActionResult MyParameters() => View();
     }
 }
