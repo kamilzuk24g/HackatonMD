@@ -11,8 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SmartAdmin.WebUI.Controllers
 {
+    using System;
     using System.Linq;
-    using Microsoft.AspNetCore.Identity;
+    using System.Security.Claims;
     using SmartAdmin.WebUI.Data;
     using SmartAdmin.WebUI.Data.Models;
     using SmartAdmin.WebUI.ViewModels;
@@ -20,18 +21,15 @@ namespace SmartAdmin.WebUI.Controllers
     public class MyParametersController : Controller
     {
         private ApplicationDbContext applicationDbContext;
-        private IdentityUser identityUser;
-        private UserFilterParameter filterParams;
 
-        public MyParametersController(ApplicationDbContext applicationDbContext, IdentityUser identityUser)
+        public MyParametersController(ApplicationDbContext applicationDbContext)
         {
             this.applicationDbContext = applicationDbContext;
-            this.identityUser = identityUser;
         }
 
         public IActionResult Index()
         {
-            this.filterParams = this.applicationDbContext.UserFilterParameters.FirstOrDefault(x => x.UserId == this.identityUser.Id);
+            var filterParams = this.applicationDbContext.UserFilterParameters.FirstOrDefault(x => x.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier));
             if (filterParams != null)
             {
                 return this.View(new MyParametersViewModel
@@ -41,8 +39,7 @@ namespace SmartAdmin.WebUI.Controllers
                     PeopleMax = filterParams.PeopleMax,
                     PeopleMin = filterParams.PeopleMin,
                     PriceMax = filterParams.PriceMax,
-                    PriceMin = filterParams.PriceMin,
-                    Remote = filterParams.Remote
+                    PriceMin = filterParams.PriceMin
                 });
             }
 
@@ -51,32 +48,41 @@ namespace SmartAdmin.WebUI.Controllers
 
         public IActionResult Post(MyParametersViewModel viewModel)
         {
-            if (this.filterParams != null)
+            try
             {
-                this.filterParams.DateFrom = viewModel.DateFrom;
-                this.filterParams.DateTo = viewModel.DateTo;
-                this.filterParams.PriceMax = viewModel.PriceMax;
-                this.filterParams.PriceMin = viewModel.PriceMin;
-                this.filterParams.PeopleMax = viewModel.PeopleMax;
-                this.filterParams.PeopleMin = viewModel.PeopleMin;
-                this.filterParams.Remote = viewModel.Remote;
-            }
-            else
-            {
-                this.applicationDbContext.UserFilterParameters.Add(
-                    new UserFilterParameter
-                    {
-                        DateFrom = viewModel.DateFrom,
-                        DateTo = viewModel.DateTo,
-                        PriceMax = viewModel.PriceMax,
-                        PriceMin = viewModel.PriceMin,
-                        PeopleMax = viewModel.PeopleMax,
-                        PeopleMin = viewModel.PeopleMin,
-                        Remote = viewModel.Remote
-                    });
-            }
+                var filterParams = this.applicationDbContext.UserFilterParameters.FirstOrDefault(x =>
+                    x.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier));
+                if (filterParams != null)
+                {
+                    filterParams.DateFrom = viewModel.DateFrom;
+                    filterParams.DateTo = viewModel.DateTo;
+                    filterParams.PriceMax = viewModel.PriceMax;
+                    filterParams.PriceMin = viewModel.PriceMin;
+                    filterParams.PeopleMax = viewModel.PeopleMax;
+                    filterParams.PeopleMin = viewModel.PeopleMin;
+                }
+                else
+                {
+                    this.applicationDbContext.UserFilterParameters.Add(
+                        new UserFilterParameter
+                        {
+                            UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                            DateFrom = viewModel.DateFrom,
+                            DateTo = viewModel.DateTo,
+                            PriceMax = viewModel.PriceMax,
+                            PriceMin = viewModel.PriceMin,
+                            PeopleMax = viewModel.PeopleMax,
+                            PeopleMin = viewModel.PeopleMin
+                        });
+                }
 
-            this.applicationDbContext.SaveChanges();
+                this.applicationDbContext.SaveChanges();
+                viewModel.Success = true;
+            }
+            catch (Exception ex)
+            {
+                viewModel.Success = false;
+            }
 
             return View("/Views/MyParameters/index.cshtml", viewModel);
         }

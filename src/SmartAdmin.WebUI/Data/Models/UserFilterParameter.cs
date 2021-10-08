@@ -14,6 +14,5 @@
         public DateTime? DateTo { get; set; }
         public int? PeopleMin { get; set; }
         public int? PeopleMax { get; set; }
-        public bool? Remote { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 /// <reference path="typings/knockout.d.ts" />
+/// <reference path="Tools.ts" />
 var AddEvent;
 (function (AddEvent) {
     var AddEventViewModel = /** @class */ (function () {
@@ -18,10 +19,15 @@ var AddEvent;
         AddEventViewModel.prototype.onSaveClick = function () {
             alert("aaa");
         };
+        AddEventViewModel.prototype.onTagAddClick = function () {
+            if (IsNullUndefinedOrEmpty(this.tag())) {
+                return;
+            }
+            this.tags().push(this.tag());
+        };
         return AddEventViewModel;
     }());
     AddEvent.AddEventViewModel = AddEventViewModel;
 })(AddEvent || (AddEvent = {}));
 var formElement = document.getElementById("frmMain");
 ko.applyBindings(new AddEvent.AddEventViewModel(), formElement);
-//# sourceMappingURL=AddEventViewModel.js.map
