@@ -16,6 +16,10 @@
         {
           "title": "Moje parametry",
           "href": "myparameters_index.html"
+        },
+        {
+          "title": "Dodaj wydarzenie",
+          "href": "eventovo_addevent.html"
         }
       ]
     },

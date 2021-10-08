@@ -87,13 +87,23 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <label for="inpProposedParticipantName" class="form-label">Nazwa proponowanego uczestnika</label>
-                            <input type="text" class="form-control" id="inpProposedParticipantName" name="inpProposedParticipantName" />
+                            <div class="row">
+                                <div class="col-7">
+                                    <label for="inpProposedParticipantName" class="form-label">Nazwa proponowanego uczestnika</label>
+                                    <input type="text" class="form-control" id="inpProposedParticipantName" name="inpProposedParticipantName"/>
+                                </div>
+                                <div class="col" style="display: flex; justify-content: flex-end;">
+                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end">+</button>
+                                </div>
+                                <div class="col" style="display: flex; justify-content: flex-end;">
+                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end">-</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="col">
                             <div class="row" style="height: 100%">
                                 <div class="col" style="display: flex; justify-content: flex-end;">
-                                    <button disabled="disabled" type="button" class="btn btn-primary" style="height: 60%; display: flex; align-self: flex-end">Dodaj mnie</button>
+                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end">Dodaj mnie</button>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +114,7 @@
 
         <div class="row">
             <div class="col-xl-6">
-                <button type="button" class="btn btn-primary">Primary</button>
+                <button type="button" class="btn btn-primary">Zapisz</button>
             </div>
         </div>
     </fieldset>
