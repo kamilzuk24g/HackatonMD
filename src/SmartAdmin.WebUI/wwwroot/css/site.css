@@ -24,4 +24,11 @@
 .js-bg-color, .js-bg-gradient, .js-bg-gradient-demo, .js-bg-target {
 }
 
+.field-validation-error {
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #fd3995;
+}
+
 /* Enter custom CSS rules for your application here */
