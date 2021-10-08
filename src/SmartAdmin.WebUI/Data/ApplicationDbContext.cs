@@ -8,10 +8,8 @@ namespace SmartAdmin.WebUI.Data
     {
         public DbSet<Group> Groups { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<UserFilterParameter> UserFilterParameters { get; set; }
-        public DbSet<TagUserFilterParameter> TagUserFilterParameters { get; set; }
-        public DbSet<GroupUserFilterParameter> GroupUserFilterParameters { get; set; }
         public DbSet<UserInGroup> UserInGroup { get; set; }
+        public DbSet<UserFilterParameter> UserFilterParameters { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
