@@ -4,16 +4,28 @@
 <div id="panel-3" class="panel">
     <div class="panel-hdr color-success-600">
         <h2>
-            @Model.Group.Name 
+            @Model.Group.Name
             <span class="fw-300">
                 @if (Model.Tags.Any())
                 {
                     <i>
-                        @string.Join(", ", Model.Tags.Select(x => "#" + x.Name))                        
+                        @string.Join(", ", Model.Tags.Select(x => "#" + x.Name))
                     </i>
                 }
             </span>
         </h2>
+        @if (Model.UserIsInGroup)
+        {
+            <div class="panel-content">
+                <button type="button" class=" btn btn-primary waves-effect waves-themed" onclick="location.href = '/Group/LeaveGroup?groupId=@Model.Group.Id';">Opuść grupę</button>
+            </div>
+        }
+        else
+        {
+            <div class="panel-content">
+                <button type="button" class=" btn btn-primary waves-effect waves-themed" onclick="location.href = '/Group/JoinGroup?groupId=@Model.Group.Id';">Dołącz do grupy</button>
+            </div>
+        }
         <div class="panel-toolbar">
             <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
         </div>
@@ -23,7 +35,7 @@
             <p>
                 @Model.Group.Description
             </p>
-        </div>
+        </div>        
         <div class="panel-content">
             <button type="button" class="btn btn-light waves-effect waves-themed" onclick="location.href = '/Group/Index';">Wróć</button>
         </div>

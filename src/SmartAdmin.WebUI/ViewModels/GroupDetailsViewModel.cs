@@ -11,5 +11,7 @@ namespace SmartAdmin.WebUI.ViewModels
         public Group Group { get; set; }
 
         public List<Tag> Tags { get; set; }
+
+        public bool UserIsInGroup { get; set; }
     }
 }

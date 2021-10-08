@@ -27,10 +27,10 @@
                     <tbody>
                         @foreach (var item in Model.Groups)
                         {
-                            <tr onclick="location.href = '/Group/Details?id=@item.Id';">
-                                <td scope="row">@Html.ActionLink(item.Name, "Details", "Group", new { id = item.Id })</td>
-                                <td>@item.Description</td>
-                            </tr>
+                        <tr onclick="location.href = '/Group/Details?id=@item.Id';">
+                            <td scope="row">@Html.ActionLink(item.Name, "Details", "Group", new { id = item.Id })</td>
+                            <td>@item.Description</td>                            
+                        </tr>
                         }
                     </tbody>
                 </table>
