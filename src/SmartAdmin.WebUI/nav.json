@@ -1,4 +1,4 @@
-{
+﻿{
   "version": 4,
   "lists": [
     {
@@ -6,11 +6,15 @@
       "icon": "fal fa-info-circle",
       "items": [
         {
-          "title": "Grupy",
+          "title": "Wyszukaj grupę",
           "href": "group_index.html"
         },
         {
-          "title": "Twoje wydarzenia",
+          "title": "Moje grupy",
+          "href": "group_my.html"
+        },
+        {
+          "title": "Moje wydarzenia",
           "href": "eventovo_myevents.html"
         },
         {

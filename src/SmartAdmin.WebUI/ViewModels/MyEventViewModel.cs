@@ -17,5 +17,7 @@ namespace SmartAdmin.WebUI.ViewModels
         public string IconPath { get; set; }
 
         public string Description { get; set; }
+
+        public string MainPhotoPath { get; set; }
     }
 }

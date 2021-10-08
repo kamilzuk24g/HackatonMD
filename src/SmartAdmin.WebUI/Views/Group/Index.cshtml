@@ -16,6 +16,18 @@
     </div>
     <div class="panel-container show">
         <div class="panel-content">
+            @using (Html.BeginForm("Index", "Group", FormMethod.Post))
+            {
+                @Html.HiddenFor(x => x.IsMy)
+                <div class="form-group">
+                    <label class="form-label" for="Name" style="float: left; margin-right: 5px; margin-top:7px;">Wyszukaj</label>
+                    @Html.TextBoxFor(x => x.SearchValue, "", new { @class = "form-control", style ="margin-left:10px;margin-right:10px;" })
+                    <button class="btn btn-primary ml-auto waves-effect waves-themed" type="submit" style="margin-left:5px">Wyszukaj</button>
+                    @Html.ValidationMessageFor(x => x.SearchValue)
+                </div>                
+            }
+        </div>
+        <div class="panel-content">
             <div class="frame-wrap">
                 <table class="table m-0">
                     <thead>
@@ -27,14 +39,14 @@
                     <tbody>
                         @foreach (var item in Model.Groups)
                         {
-                        <tr onclick="location.href = '/Group/Details?id=@item.Id';">
-                            <td scope="row">@Html.ActionLink(item.Name, "Details", "Group", new { id = item.Id })</td>
-                            <td>@item.Description</td>                            
-                        </tr>
+                            <tr onclick="location.href = '/Group/Details?id=@item.Id';">
+                                <td scope="row">@Html.ActionLink(item.Name, "Details", "Group", new { id = item.Id })</td>
+                                <td>@item.Description</td>
+                            </tr>
                         }
                     </tbody>
                 </table>
             </div>
-        </div>        
+        </div>
     </div>
 </div>
