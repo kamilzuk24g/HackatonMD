@@ -1,69 +1,57 @@
-﻿@*@{
-    ViewData["Title"] = "Moje parametry";
-    ViewData["PageName"] = "myparameters_index";
-    ViewData["Heading"] = "<i class='fal fa-info-circle'></i> MyEvents";
-    ViewData["Category1"] = "Eventovo";
-    ViewData["PageDescription"] = "Skonfiguruj swoje domyślne parametry filtrowania";
-}
-@section HeadBlock {}*@
-@model SmartAdmin.WebUI.ViewModels.MyParametersViewModel
+﻿@model SmartAdmin.WebUI.ViewModels.MyParametersViewModel
 
 <div class="fs-lg fw-300 p-5 bg-white border-faded rounded mb-g">
-    @{
-        Model?.DateFrom?.ToString();
-    }
-
-    <form action="/MyParameters/Post" method="post">
-        <div class="form-group">
-            <label class="form-label" for="dateFrom">Data od:</label>
-            <input class="form-control" id="dateFrom" type="date" name="DateFrom">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="dateTo">Data do:</label>
-            <input class="form-control" id="dateTo" type="date" name="DateTo">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="priceMin">Cena od:</label>
-            <input class="form-control" id="priceMin" type="number" name="PriceMin">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="priceMax">Cena do:</label>
-            <input class="form-control" id="priceMax" type="number" name="PriceMax">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="peopleMin">Minimalna ilość osób:</label>
-            <input class="form-control" id="peopleMin" type="number" name="PeopleMin">
-        </div>
-        <div class="form-group">
-            <label class="form-label" for="peopleMax">Maksymalna ilość osób:</label>
-            <input class="form-control" id="peopleMax" type="number" name="PeopleMax">
-        </div>
-        <div class="frame-wrap demo">
-            <div class="demo">
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="Remote">
-                    <label class="custom-control-label" for="remote">Zdalnie</label>
+    <h3 class="mb-g">
+        Skonfiguruj swoje domyślne parametry filtrowania
+    </h3>
+    <div class="row">
+        <div class="col-xl-6">
+            @if (Model.Success == true)
+            {
+                <div class="alert alert-success" role="alert">
+                    <strong>Nowe ustawienia zostały zapisane.</strong>
                 </div>
-            </div>
-        </div>
-        <br />
-        <button type="submit" class="btn btn-lg btn-default">
-            <span class="fal fa-check mr-1"></span>
-            Zapisz
-        </button>
-    </form>
-</div>
+            }
 
-@section ScriptsBlock {
-    <script type="text/javascript">
-        $('#defaultIndeterminate').prop('indeterminate', true)
-        var toggleCheckbox = function() {
-            $('#js-checkbox-toggle').toggleText('Change to CIRCLE', 'Change back to default');
-            $('.frame-wrap .custom-checkbox').toggleClass('custom-checkbox-circle');
-        }
-        var toggleRadio = function() {
-            $('#js-radio-toggle').toggleText('Change to ROUNDED', 'Change back to default');
-            $('.frame-wrap .custom-radio').toggleClass('custom-radio-rounded');
-        }
-    </script>
-}
+            @if (Model.Success == false)
+            {
+
+                <div class="alert alert-danger" role="alert">
+                    <strong>Wystąpił błąd, dane nie zstały zapisane.</strong>
+                </div>
+            }
+
+            <form action="/MyParameters/Post" method="post">
+                <div class="form-group">
+                    <label class="form-label" for="dateFrom">Data od:</label>
+                    <input class="form-control" id="dateFrom" type="date" name="DateFrom" value="@Model?.DateFrom?.ToString("yyyy-MM-dd")">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="dateTo">Data do:</label>
+                    <input class="form-control" id="dateTo" type="date" name="DateTo" value="@Model?.DateTo?.ToString("yyyy-MM-dd")">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="priceMin">Cena od:</label>
+                    <input class="form-control" id="priceMin" type="number" name="PriceMin" value="@Model?.PriceMin">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="priceMax">Cena do:</label>
+                    <input class="form-control" id="priceMax" type="number" name="PriceMax" value="@Model?.PriceMax">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="peopleMin">Minimalna ilość osób:</label>
+                    <input class="form-control" id="peopleMin" type="number" name="PeopleMin" value="@Model?.PeopleMin">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="peopleMax">Maksymalna ilość osób:</label>
+                    <input class="form-control" id="peopleMax" type="number" name="PeopleMax" value="@Model?.PeopleMax">
+                </div>
+                <br />
+                <button type="submit" class="btn btn-lg btn-default">
+                    <span class="fal fa-check mr-1"></span>
+                    Zapisz
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

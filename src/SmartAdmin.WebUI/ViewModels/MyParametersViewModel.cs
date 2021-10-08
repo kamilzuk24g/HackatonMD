@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SmartAdmin.WebUI.ViewModels
 {
@@ -13,6 +10,6 @@ namespace SmartAdmin.WebUI.ViewModels
         public DateTime? DateTo { get; set; }
         public int? PeopleMin { get; set; }
         public int? PeopleMax { get; set; }
-        public bool? Remote { get; set; }
+        public bool? Success { get; set; }
     }
 }
