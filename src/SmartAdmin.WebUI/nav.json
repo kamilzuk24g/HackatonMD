@@ -12,6 +12,10 @@
         {
           "title": "Twoje wydarzenia",
           "href": "eventovo_myevents.html"
+        },
+        {
+          "title": "Moje parametry",
+          "href": "eventovo_myparameters.html"
         }
       ]
     },
