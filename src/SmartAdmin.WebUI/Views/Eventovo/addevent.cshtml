@@ -111,6 +111,41 @@
                 </div>
             </div>
         </div>
+        
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-xl-6">
+                <div class="form-group" style="border-style: solid">
+                    <legend>Informacje dodatkowe</legend>
+                    <div class="row">
+                        <div class="col">
+                            <div>
+                                <div style="margin-bottom: 10px;">
+                                    <label for="inpEstimatedCost" class="form-label">Szacowany koszt uczestnictwa na osobę (w złotych polskich)</label>
+                                    <input type="text" class="form-control" id="inpEstimatedCost" name="inpEstimatedCost"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <label style="font-size: 17px;">Tagi</label>
+                    <div class="row">
+                        <div class="col">
+                            <div style="margin-bottom: 10px;">
+                                <div id="dTags">...</div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-8">
+                            <label for="inpTag" class="form-label">Nowy tag</label>
+                            <input type="text" class="form-control" id="inpTag" name="inpTag"/> 
+                        </div>
+                        <div class="col" style="display: flex; justify-content: flex-end;">
+                            <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-xl-6">
@@ -119,3 +154,5 @@
         </div>
     </fieldset>
 </form>
+
+<script type="text/javascript" src="js/knockout-3.5.1.js"></script>
