@@ -14,12 +14,8 @@
           "href": "eventovo_myevents.html"
         },
         {
-          "title": "Nowe wydarzenie",
-          "href": "eventovo_addevent.html"
-        },
-        {
           "title": "Moje parametry",
-          "href": "eventovo_myparameters.html"
+          "href": "myparameters_index.html"
         }
       ]
     },
