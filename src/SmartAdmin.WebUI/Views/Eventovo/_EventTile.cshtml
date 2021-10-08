@@ -1,0 +1,39 @@
+﻿@model SmartAdmin.WebUI.ViewModels.MyEventViewModel
+
+<div id="panel-2" class="panel">
+    <div style="margin-bottom: 5px; display: -webkit-box; -webkit-box-orient: horizontal;" class="row panel">
+        <div class="col-xl-4">
+            <img src="~/img/card-backgrounds/cover-3-lg.png" class="col" alt="..." style="height:100%; width:100%;">
+        </div>
+        <div class="col-xl-8">
+            <div class="form-group" style="align-items: center; align-content: center;">
+                <legend class="align-self-center" style="text-align: -webkit-center;">@Model.Title</legend>
+            </div>
+            <div class="form-group" style="height:100%">
+                <div class="row" style="height:20%; margin-bottom: 20px;">
+                    <div class="col align-self-md-center">
+                        <div>
+                            <legend>@Model.StartDate.ToShortDateString()</legend>
+                        </div>
+                    </div>
+                    <div class="col align-self-md-center">
+                        <div>
+                            <legend>@Model.EndDate.ToShortDateString()</legend>
+                        </div>
+                    </div>
+                    <div class="col" style="text-align: -webkit-center;">
+                        <div>
+                            <img src="@Model.IconPath" class="col" style="max-width:80px;width:100%" alt="...">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="height:80%">
+                    <legend class="align-self-left" style="width: 100%; overflow: hidden; height: 150px; line-height: 30px;">
+                        @Model.Description
+                    </legend>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
