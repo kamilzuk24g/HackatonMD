@@ -6,14 +6,14 @@
     </h3>
     <div class="row">
         <div class="col-xl-6">
-            @if (Model.Success == true)
+            @if (Model?.Success == true)
             {
                 <div class="alert alert-success" role="alert">
                     <strong>Nowe ustawienia zostały zapisane.</strong>
                 </div>
             }
 
-            @if (Model.Success == false)
+            @if (Model?.Success == false)
             {
 
                 <div class="alert alert-danger" role="alert">
