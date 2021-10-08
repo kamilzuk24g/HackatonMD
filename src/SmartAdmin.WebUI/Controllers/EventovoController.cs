@@ -20,7 +20,7 @@ namespace SmartAdmin.WebUI.Controllers
                                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
                       StartDate = new DateTime(2021,08,04),
-                      EndDate = new DateTime(2021,08,04),
+                      Place = "Plac Uni lubelskiej",
                       IconPath = @"/img/demo/rails.png",
                       Title = "Moje pierwsze wydarzenie!"
                 },
@@ -31,7 +31,7 @@ namespace SmartAdmin.WebUI.Controllers
                                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
                       StartDate = new DateTime(2021,09,04),
-                      EndDate = new DateTime(2021,09,04),
+                      Place = "Orlik @Stegny",
                       IconPath = @"/img/demo/react.png",
                       Title = "Moje drugie wydarzenie!"
                 },
@@ -42,7 +42,7 @@ namespace SmartAdmin.WebUI.Controllers
                                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
                       StartDate = new DateTime(2021,10,04),
-                      EndDate = new DateTime(2021,10,04),
+                      Place = "MiNi PW",
                       IconPath = @"/img/demo/mvc.png",
                       Title = "Moje trzecie wydarzenie!",
                       MainPhotoPath = @"/img/demo/mvc.png",

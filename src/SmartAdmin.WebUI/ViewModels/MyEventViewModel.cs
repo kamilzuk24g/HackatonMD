@@ -12,7 +12,7 @@ namespace SmartAdmin.WebUI.ViewModels
 
         public DateTime StartDate { get; set; }
 
-        public DateTime EndDate { get; set; }
+        public string Place { get; set; }
 
         public string IconPath { get; set; }
 
