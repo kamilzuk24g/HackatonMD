@@ -1,12 +1,41 @@
 <form>
     <fieldset>
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-xl-6">
+                <div class="form-group" style="border-style: solid">
+                    <legend>Informacje ogólne</legend>
+                    <div class="row">
+                        <div class="col">
+                            <div style="margin-bottom: 10px;">
+                                <label for="inpEventName" class="form-label">Nazwa wydarzenia</label>
+                                <input type="text" class="form-control" id="inpEventName" name="inpEventName"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div style="margin-bottom: 10px;">
+                                <label for="inpEventPlace" class="form-label">Miejsce wydarzenia</label>
+                                <input type="text" class="form-control" id="inpEventPlace" name="inpEventPlace"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div style="margin-bottom: 10px;">
+                                <label for="tbEventDescription" class="form-label">Opis wydarzenia</label>
+                                <textarea class="form-control" id="tbEventDescription" name="tbEventDescription" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-xl-6">
-                <div style="margin-bottom: 10px;">
-                    <label for="inpEventName" class="form-label">Nazwa wydarzenia</label>
-                    <input type="text" class="form-control" id="inpEventName" name="inpEventName"/>
-                </div>
-                
                 <div style="margin-bottom: 10px;">
                     <div class="form-group" style="border-style: solid">
                         <legend>Data i czas wydarzenia</legend>
@@ -33,7 +62,35 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-xl-6">
+                <div class="form-group" style="border-style: solid">
+                    <legend>Informacje o uczestnikach</legend>
+                    <div class="row">
+                        <div class="col">
+                            <div>
+                                <label class="form-label" for="msProposedParticipants">Proposed participants</label>
+                                <select id="msProposedParticipants" multiple="" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <label class="form-label" for="msConfirmedParticipants">Confirmed participants</label>
+                                <select id="msConfirmedParticipants" multiple="" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-xl-6">
                 <button type="button" class="btn btn-primary">Primary</button>
             </div>
         </div>
