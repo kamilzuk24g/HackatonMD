@@ -1,0 +1,41 @@
+<form>
+    <fieldset>
+        <div class="row">
+            <div class="col-xl-6">
+                <div style="margin-bottom: 10px;">
+                    <label for="inpEventName" class="form-label">Nazwa wydarzenia</label>
+                    <input type="text" class="form-control" id="inpEventName" name="inpEventName"/>
+                </div>
+                
+                <div style="margin-bottom: 10px;">
+                    <div class="form-group" style="border-style: solid">
+                        <legend>Data i czas wydarzenia</legend>
+                        <div style="margin-bottom: 5px;" class="row">
+                            <div class="col-xl-4">
+                                <label class="form-label" for="inpDate">Data wydarzenia</label>
+                                <input class="form-control" id="inpDate" type="date" name="inpDate" value="2023-07-23"/>
+                            </div>
+                            <div class="col" style="display: flex; align-items: center; align-content: center; padding-left: 20px; padding-top: 13px;">
+                                <input class="custom-control-input" id="inpForced" type="checkbox" name="inpForced"/>
+                                <label class="custom-control-label" for="inpForced">Wymuszona</label>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 7px;" class="row">
+                            <div class="col">
+                                <label class="form-label" for="inpTime">Czas wydarzenia</label>
+                                <input class="form-control" id="inpTime" type="time" name="inpTime"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col" style="display: flex; justify-content: right;">
+                                <button type="button" class="btn btn-primary">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary">Primary</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
