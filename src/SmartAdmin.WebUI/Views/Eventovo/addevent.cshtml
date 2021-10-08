@@ -1,0 +1,158 @@
+<form>
+    <fieldset>
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-xl-6">
+                <div class="form-group" style="border-style: solid">
+                    <legend>Informacje ogólne</legend>
+                    <div class="row">
+                        <div class="col">
+                            <div style="margin-bottom: 10px;">
+                                <label for="inpEventName" class="form-label">Nazwa wydarzenia</label>
+                                <input type="text" class="form-control" id="inpEventName" name="inpEventName"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div style="margin-bottom: 10px;">
+                                <label for="inpEventPlace" class="form-label">Miejsce wydarzenia</label>
+                                <input type="text" class="form-control" id="inpEventPlace" name="inpEventPlace"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div style="margin-bottom: 10px;">
+                                <label for="tbEventDescription" class="form-label">Opis wydarzenia</label>
+                                <textarea class="form-control" id="tbEventDescription" name="tbEventDescription" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6">
+                <div style="margin-bottom: 10px;">
+                    <div class="form-group" style="border-style: solid">
+                        <legend>Data i czas wydarzenia</legend>
+                        <div style="margin-bottom: 5px;" class="row">
+                            <div class="col-xl-4">
+                                <label class="form-label" for="inpDate">Data wydarzenia</label>
+                                <input class="form-control" id="inpDate" type="date" name="inpDate" value="2023-07-23"/>
+                            </div>
+                            <div class="col" style="display: flex; align-items: center; align-content: center; padding-left: 20px; padding-top: 13px;">
+                                <input class="custom-control-input" id="inpForced" type="checkbox" name="inpForced"/>
+                                <label class="custom-control-label" for="inpForced">Wymuszona</label>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 7px;" class="row">
+                            <div class="col">
+                                <label class="form-label" for="inpTime">Czas wydarzenia</label>
+                                <input class="form-control" id="inpTime" type="time" name="inpTime"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col" style="display: flex; justify-content: right;">
+                                <button type="button" class="btn btn-primary">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-xl-6">
+                <div class="form-group" style="border-style: solid">
+                    <legend>Informacje o uczestnikach</legend>
+                    <div class="row">
+                        <div class="col">
+                            <div>
+                                <label class="form-label" for="msProposedParticipants">Proponowani uczestnicy</label>
+                                <select id="msProposedParticipants" multiple="" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <label class="form-label" for="msConfirmedParticipants">Potwierdzeni uczestnicy</label>
+                                <select id="msConfirmedParticipants" multiple="" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-7">
+                                    <label for="inpProposedParticipantName" class="form-label">Nazwa proponowanego uczestnika</label>
+                                    <input type="text" class="form-control" id="inpProposedParticipantName" name="inpProposedParticipantName"/>
+                                </div>
+                                <div class="col" style="display: flex; justify-content: flex-end;">
+                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end">+</button>
+                                </div>
+                                <div class="col" style="display: flex; justify-content: flex-end;">
+                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end">-</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row" style="height: 100%">
+                                <div class="col" style="display: flex; justify-content: flex-end;">
+                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end">Dodaj mnie</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-xl-6">
+                <div class="form-group" style="border-style: solid">
+                    <legend>Informacje dodatkowe</legend>
+                    <div class="row">
+                        <div class="col">
+                            <div>
+                                <div style="margin-bottom: 10px;">
+                                    <label for="inpEstimatedCost" class="form-label">Szacowany koszt uczestnictwa na osobę (w złotych polskich)</label>
+                                    <input type="text" class="form-control" id="inpEstimatedCost" name="inpEstimatedCost"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <label style="font-size: 17px;">Tagi</label>
+                    <div class="row">
+                        <div class="col">
+                            <div style="margin-bottom: 10px;">
+                                <div id="dTags">...</div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-8">
+                            <label for="inpTag" class="form-label">Nowy tag</label>
+                            <input type="text" class="form-control" id="inpTag" name="inpTag"/> 
+                        </div>
+                        <div class="col" style="display: flex; justify-content: flex-end;">
+                            <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6">
+                <button type="button" class="btn btn-primary">Zapisz</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<script type="text/javascript" src="js/knockout-3.5.1.js"></script>
