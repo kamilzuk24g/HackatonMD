@@ -22,7 +22,7 @@ namespace SmartAdmin.WebUI.Controllers
 
             this.applicationDbContext.Tags.Remove(tag);
 
-            return RedirectToAction("Detail", "Group", new { id = tag.GroupId });
+            return RedirectToAction("Details", "Group", new { id = tag.GroupId });
         }
     }
 }

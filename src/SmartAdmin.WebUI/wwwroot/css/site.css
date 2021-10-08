@@ -31,4 +31,9 @@
     color: #fd3995;
 }
 
+#SearchValue {
+    width: 50%;
+    float:left;
+}
+
 /* Enter custom CSS rules for your application here */

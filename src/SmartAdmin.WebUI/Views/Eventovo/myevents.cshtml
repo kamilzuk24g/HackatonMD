@@ -6,143 +6,14 @@
     ViewData["PageDescription"] = "My events page";
 }
 @section HeadBlock {}
+@model List<SmartAdmin.WebUI.ViewModels.MyEventViewModel>
 
 <div class="row">
     <div class="col-xl-12">
-        @*<div id="panel-1" class="panel">
-                <div class="panel-container show">
-                    <div class="panel-content-group">
-                        <div class="row card border m-auto" style="max-width: 18rem; display: flex;">
-                            <table>
-                                <tr>
-                                </tr>
-                            </table>
-                            <img src="~/img/card-backgrounds/cover-3-lg.png" class="col" alt="...">
-                            <div class="card-body col">
-                                <h5 class="row">Card title</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-        <div id="panel-2" class="panel">
-            <div style="margin-bottom: 5px; display: -webkit-box; -webkit-box-orient: horizontal;" class="row panel">
-                <div class="col-xl-4">
-                    <img src="~/img/card-backgrounds/cover-3-lg.png" class="col" alt="..." style="height:100%; width:100%;">
-                </div>
-                <div class="col-xl-8">
-                    <div class="form-group" style="align-items: center; align-content: center;">
-                        <legend class="align-self-center" style="text-align: -webkit-center;">Nazwa wydarzenia</legend>
-                    </div>
-                    <div class="form-group" style="height:100%">
-                        <div class="row" style="height:20%; margin-bottom: 20px;">
-                            <div class="col align-self-md-center">
-                                <div>
-                                    <legend>Data wydarzenia</legend>
-                                </div>
-                            </div>
-                            <div class="col align-self-md-center">
-                                <div>
-                                    <legend>Godzina wydarzenia</legend>
-                                </div>
-                            </div>
-                            <div class="col" style="text-align: -webkit-center;">
-                                <div>
-                                    <img src="~/img/demo/rails.png" class="col" style="max-width:80px;width:100%" alt="...">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group" style="height:80%">
-                            <legend class="align-self-left" style="width: 100%; overflow: hidden; height: 150px; line-height: 30px;">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                            </legend>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="panel-2" class="panel">
-            <div style="margin-bottom: 5px; display: -webkit-box; -webkit-box-orient: horizontal;" class="row panel">
-                <div class="col-xl-4">
-                    <img src="~/img/card-backgrounds/cover-3-lg.png" class="col" alt="..." style="height:100%; width:100%;">
-                </div>
-                <div class="col-xl-8">
-                    <div class="form-group" style="align-items: center; align-content: center;">
-                        <legend class="align-self-center" style="text-align: -webkit-center;">Nazwa wydarzenia</legend>
-                    </div>
-                    <div class="form-group" style="height:100%">
-                        <div class="row" style="height:20%; margin-bottom: 20px;">
-                            <div class="col align-self-md-center">
-                                <div>
-                                    <legend>Data wydarzenia</legend>
-                                </div>
-                            </div>
-                            <div class="col align-self-md-center">
-                                <div>
-                                    <legend>Godzina wydarzenia</legend>
-                                </div>
-                            </div>
-                            <div class="col" style="text-align: -webkit-center;">
-                                <div>
-                                    <img src="~/img/demo/rails.png" class="col" style="max-width:80px;width:100%" alt="...">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group" style="height:80%">
-                            <legend class="align-self-left" style="width: 100%; overflow: hidden; height: 150px; line-height: 30px;">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                            </legend>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="panel-2" class="panel">
-            <div class="panel-hdr">
-                <h2>
-                    Kitchen <span class="fw-300"><i>sink example</i></span>
-                </h2>
-                <div class="panel-toolbar">
-                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
-                </div>
-            </div>
-            <div class="panel-container show">
-                <div class="panel-content">
-                    <div class="panel-tag">
-                        The most basic example of cards with enforced width
-                    </div>
-                    <div class="card border m-auto m-lg-0" style="max-width: 18rem;">
-                        <img src="~/img/card-backgrounds/cover-3-lg.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @foreach (var @event in Model)
+        {
+            @Html.Partial("_EventTile", @event)
+        }
     </div>
 </div>
 

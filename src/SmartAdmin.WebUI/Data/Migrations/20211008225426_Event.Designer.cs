@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartAdmin.WebUI.Data;
 
 namespace SmartAdmin.WebUI.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211008225426_Event")]
+    partial class Event
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -258,9 +260,9 @@ namespace SmartAdmin.WebUI.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("EventId");
+                    b.Property<int>("EventId");
 
-                    b.Property<int?>("GroupId");
+                    b.Property<int>("GroupId");
 
                     b.Property<string>("Name");
 
@@ -288,6 +290,8 @@ namespace SmartAdmin.WebUI.Data.Migrations
                     b.Property<decimal?>("PriceMax");
 
                     b.Property<decimal?>("PriceMin");
+
+                    b.Property<bool?>("Remote");
 
                     b.Property<string>("UserId");
 
@@ -376,7 +380,8 @@ namespace SmartAdmin.WebUI.Data.Migrations
                 {
                     b.HasOne("SmartAdmin.WebUI.Data.Models.Event")
                         .WithMany("Tags")
-                        .HasForeignKey("EventId");
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

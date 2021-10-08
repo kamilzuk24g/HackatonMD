@@ -30,6 +30,48 @@
             return View(viewModel);
         }
 
+        [HttpPost]
+        public IActionResult Index(GroupsListViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            if (!string.IsNullOrEmpty(viewModel.SearchValue))
+            {
+                var filteredGroups = this.applicationDbContext.Groups.Where(x => x.Name.IndexOf(viewModel.SearchValue, StringComparison.OrdinalIgnoreCase) > -1 ||
+                x.Description.IndexOf(viewModel.SearchValue, StringComparison.OrdinalIgnoreCase) > -1).Select(x => x.Id).ToList();
+
+                var groupsByTags = this.applicationDbContext.Tags.Where(x => x.GroupId != null && x.Name.IndexOf(viewModel.SearchValue, StringComparison.OrdinalIgnoreCase) > -1).Select(x => x.GroupId.Value).ToList();
+
+                var union = filteredGroups.Union(groupsByTags).ToList();
+
+                if (viewModel.IsMy)
+                {
+                    var myGroups = this.applicationDbContext.UserInGroup.Where(x => x.UserName == User.Identity.Name).Select(x => x.GroupId).ToList();
+                    union = union.Where(x => myGroups.Contains(x)).ToList();
+                }
+
+                viewModel.Groups = this.applicationDbContext.Groups.Where(x => union.Contains(x.Id)).ToList();
+            }
+
+            return View(viewModel);
+        }
+
+        public IActionResult My()
+        {
+            var myGroups = this.applicationDbContext.UserInGroup.Where(x => x.UserName == User.Identity.Name).Select(x => x.GroupId).ToList();
+
+            var viewModel = new GroupsListViewModel()
+            {
+                Groups = this.applicationDbContext.Groups.Where(x => myGroups.Contains(x.Id)).ToList(),
+                IsMy = true
+            };
+
+            return View("Index", viewModel);
+        }
+
         public IActionResult JoinGroup(int groupId)
         {
             this.applicationDbContext.UserInGroup.Add(new UserInGroup()
@@ -60,7 +102,7 @@
             var viewModel = new GroupDetailsViewModel()
             {
                 Group = this.applicationDbContext.Groups.FirstOrDefault(x => x.Id == id),
-                Tags = this.applicationDbContext.Tags.Where(x => x.GroupId == id).ToList(),
+                Tags = this.applicationDbContext.Tags.Where(x => x.GroupId != null && x.GroupId == id).ToList(),
                 UserIsInGroup = this.applicationDbContext.UserInGroup.Any(x => x.GroupId == id && x.UserName == User.Identity.Name)
             };
 
