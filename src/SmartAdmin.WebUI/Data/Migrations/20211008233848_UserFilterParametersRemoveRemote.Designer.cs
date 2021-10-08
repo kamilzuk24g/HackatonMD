@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartAdmin.WebUI.Data;
 
 namespace SmartAdmin.WebUI.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211008233848_UserFilterParametersRemoveRemote")]
+    partial class UserFilterParametersRemoveRemote
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,46 +182,6 @@ namespace SmartAdmin.WebUI.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SmartAdmin.WebUI.Data.Models.Event", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal?>("EstimatedCostPerPerson");
-
-                    b.Property<string>("EventDescription");
-
-                    b.Property<string>("EventName");
-
-                    b.Property<string>("EventPlace");
-
-                    b.Property<DateTime?>("FinalEventDate");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("SmartAdmin.WebUI.Data.Models.EventParticipant", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("EventId");
-
-                    b.Property<bool>("IsProposed");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EventId");
-
-                    b.ToTable("EventParticipants");
-                });
-
             modelBuilder.Entity("SmartAdmin.WebUI.Data.Models.Group", b =>
                 {
                     b.Property<int>("Id")
@@ -235,38 +197,17 @@ namespace SmartAdmin.WebUI.Data.Migrations
                     b.ToTable("Groups");
                 });
 
-            modelBuilder.Entity("SmartAdmin.WebUI.Data.Models.ProposedEventDate", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("EventId");
-
-                    b.Property<DateTime>("ProposedDate");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EventId");
-
-                    b.ToTable("ProposedEventDates");
-                });
-
             modelBuilder.Entity("SmartAdmin.WebUI.Data.Models.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("EventId");
-
-                    b.Property<int?>("GroupId");
+                    b.Property<int>("GroupId");
 
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EventId");
 
                     b.ToTable("Tags");
                 });
@@ -354,29 +295,6 @@ namespace SmartAdmin.WebUI.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SmartAdmin.WebUI.Data.Models.EventParticipant", b =>
-                {
-                    b.HasOne("SmartAdmin.WebUI.Data.Models.Event")
-                        .WithMany("EventParticipants")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SmartAdmin.WebUI.Data.Models.ProposedEventDate", b =>
-                {
-                    b.HasOne("SmartAdmin.WebUI.Data.Models.Event")
-                        .WithMany("ProposedEventDates")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SmartAdmin.WebUI.Data.Models.Tag", b =>
-                {
-                    b.HasOne("SmartAdmin.WebUI.Data.Models.Event")
-                        .WithMany("Tags")
-                        .HasForeignKey("EventId");
                 });
 #pragma warning restore 612, 618
         }
