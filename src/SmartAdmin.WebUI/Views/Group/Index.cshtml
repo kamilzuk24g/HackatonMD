@@ -1,2 +1,40 @@
 ﻿@model SmartAdmin.WebUI.ViewModels.GroupsListViewModel
 
+<div id="panel-3" class="panel">
+    <div class="panel-hdr color-success-600">
+        <h2>
+            Dostępne grupy
+            <span class="fw-300">
+            </span>
+        </h2>
+        <div class="panel-content">
+            <button type="button" class="btn btn-primary waves-effect waves-themed" onclick="location.href = '/Group/Create';">Dodaj nową grupę</button>
+        </div>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div class="panel-content">
+            <div class="frame-wrap">
+                <table class="table m-0">
+                    <thead>
+                        <tr>
+                            <th>Nazwa</th>
+                            <th>Opis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Groups)
+                        {
+                        <tr onclick="location.href = '/Group/Details?id=@item.Id';">
+                            <td scope="row">@Html.ActionLink(item.Name, "Details", "Group", new { id = item.Id })</td>
+                            <td>@item.Description</td>                            
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>        
+    </div>
+</div>

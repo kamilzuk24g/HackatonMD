@@ -1,4 +1,6 @@
-﻿namespace SmartAdmin.WebUI.Data.Models
+﻿using System.Collections.Generic;
+
+namespace SmartAdmin.WebUI.Data.Models
 {
     public class Group
     {
