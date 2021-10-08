@@ -8,7 +8,7 @@
                         <div class="col">
                             <div style="margin-bottom: 10px;">
                                 <label for="inpEventName" class="form-label">Nazwa wydarzenia</label>
-                                <input type="text" class="form-control" id="inpEventName" name="inpEventName"/>
+                                <input type="text" class="form-control" id="inpEventName" name="inpEventName" data-bind="value: eventName" />
                             </div>
                         </div>
                     </div>
@@ -17,7 +17,7 @@
                         <div class="col">
                             <div style="margin-bottom: 10px;">
                                 <label for="inpEventPlace" class="form-label">Miejsce wydarzenia</label>
-                                <input type="text" class="form-control" id="inpEventPlace" name="inpEventPlace"/>
+                                <input type="text" class="form-control" id="inpEventPlace" name="inpEventPlace" data-bind="value: eventPlace" />
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="row">
                             <div class="col" style="display: flex; justify-content: right;">
-                                <button type="button" class="btn btn-primary">+</button>
+                                <button type="button" class="btn btn-primary"><i class="fal fa-plus-circle"></i></button>
                             </div>
                         </div>
                     </div>
@@ -90,13 +90,13 @@
                             <div class="row">
                                 <div class="col-7">
                                     <label for="inpProposedParticipantName" class="form-label">Nazwa proponowanego uczestnika</label>
-                                    <input type="text" class="form-control" id="inpProposedParticipantName" name="inpProposedParticipantName"/>
+                                    <input type="text" class="form-control" id="inpProposedParticipantName" name="inpProposedParticipantName" data-bind="value: proposedParticipantName" />
                                 </div>
                                 <div class="col" style="display: flex; justify-content: flex-end;">
-                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end">+</button>
+                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end"><i class="fal fa-plus-circle"></i></button>
                                 </div>
                                 <div class="col" style="display: flex; justify-content: flex-end;">
-                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end">-</button>
+                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end"><i class="fal fa-minus-circle"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                             <div>
                                 <div style="margin-bottom: 10px;">
                                     <label for="inpEstimatedCost" class="form-label">Szacowany koszt uczestnictwa na osobę (w złotych polskich)</label>
-                                    <input type="text" class="form-control" id="inpEstimatedCost" name="inpEstimatedCost"/>
+                                    <input type="text" class="form-control" id="inpEstimatedCost" name="inpEstimatedCost" data-bind="value: estimatedCost" />
                                 </div>
                             </div>
                         </div>
@@ -130,17 +130,17 @@
                     <div class="row">
                         <div class="col">
                             <div style="margin-bottom: 10px;">
-                                <div id="dTags">...</div>
+                                <div id="dTags" data-bind="foreach: tags"><span data-bind="text: $data"></span></div>
                             </div>
                         </div>
                     </div> 
                     <div class="row">
                         <div class="col-8">
                             <label for="inpTag" class="form-label">Nowy tag</label>
-                            <input type="text" class="form-control" id="inpTag" name="inpTag"/> 
+                            <input type="text" class="form-control" id="inpTag" name="inpTag" data-bind="value: tag" /> 
                         </div>
                         <div class="col" style="display: flex; justify-content: flex-end;">
-                            <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end">+</button>
+                            <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end" data-bind="click: onTagAddClick"><i class="fal fa-plus-circle"></i></button>
                         </div>
                     </div>
                 </div>
@@ -149,10 +149,12 @@
 
         <div class="row">
             <div class="col-xl-6">
-                <button type="button" class="btn btn-primary">Zapisz</button>
+                <button type="button" class="btn btn-primary" data-bind="click: onSaveClick">Zapisz</button>
             </div>
         </div>
     </fieldset>
 </form>
 
-<script type="text/javascript" src="js/knockout-3.5.1.js"></script>
+<script type="text/javascript" src="~/js/knockout-3.5.1.js"></script>
+<script type="text/javascript" src="~/ts/Tools.js"></script>
+<script type="text/javascript" src="~/ts/AddEventViewModel.js"></script>

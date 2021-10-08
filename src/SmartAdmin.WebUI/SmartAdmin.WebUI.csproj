@@ -18,7 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\ts\AddEventViewModel.ts" />
+    <TypeScriptCompile Include="wwwroot\ts\AddEventViewModel.ts">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="wwwroot\ts\Tools.ts">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="wwwroot\ts\typings\knockout.d.ts" />
   </ItemGroup>
 

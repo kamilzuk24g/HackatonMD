@@ -1,4 +1,5 @@
 /// <reference path="typings/knockout.d.ts" />
+/// <reference path="Tools.ts" />
 
 namespace AddEvent {
     export class AddEventViewModel {
@@ -30,6 +31,14 @@ namespace AddEvent {
         
         public onSaveClick(): void {
             alert("aaa");
+        }
+        
+        public onTagAddClick(): void {
+            if (IsNullUndefinedOrEmpty(this.tag())) {
+                return;
+            }
+            
+            this.tags().push(this.tag());
         }
     }
 }
