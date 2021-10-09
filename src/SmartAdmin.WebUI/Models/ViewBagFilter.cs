@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace SmartAdmin.WebUI.Models
 {
+    using System.Security.Claims;
+
     public class ViewBagFilter : IActionFilter
     {
         private static readonly string Enabled = "Enabled";
@@ -26,7 +28,7 @@ namespace SmartAdmin.WebUI.Models
                 controller.ViewBag.AppName = "Eventovo";
                 controller.ViewBag.AppFlavor = "Eventovo";
                 controller.ViewBag.AppFlavorSubscript = "";
-                controller.ViewBag.User = "Dr. Codex Lantern";
+                controller.ViewBag.User = controller.User.FindFirstValue(ClaimTypes.Name);
                 controller.ViewBag.Email = "drlantern@gotbootstrap.com";
                 controller.ViewBag.Twitter = "codexlantern";
                 controller.ViewBag.Avatar = "avatar-admin.png";
