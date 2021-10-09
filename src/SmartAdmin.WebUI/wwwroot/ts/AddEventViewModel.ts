@@ -9,6 +9,7 @@ namespace AddEvent {
         public eventDateString: KnockoutObservable<string>;
         public eventTimeString: KnockoutObservable<string>;
         public proposedParticipants: KnockoutObservableArray<string>;
+        public selectedProposedParticipants: KnockoutObservableArray<string>;
         public confirmedParticipants: KnockoutObservableArray<string>;
         public proposedParticipantName: KnockoutObservable<string>;
         public estimatedCost: KnockoutObservable<string>;
@@ -16,17 +17,18 @@ namespace AddEvent {
         public tag: KnockoutObservable<string>;
         
         constructor() {
-            this.eventName = ko.observable<string>();
-            this.eventPlace = ko.observable<string>();
-            this.eventDescription = ko.observable<string>();
-            this.eventDateString = ko.observable<string>();
-            this.eventTimeString = ko.observable<string>();
-            this.proposedParticipants = ko.observableArray<string>();
-            this.confirmedParticipants = ko.observableArray<string>();
-            this.proposedParticipantName = ko.observable<string>();
-            this.estimatedCost = ko.observable<string>();
-            this.tags = ko.observableArray<string>();
-            this.tag = ko.observable<string>();
+            this.eventName = ko.observable<string>("");
+            this.eventPlace = ko.observable<string>("");
+            this.eventDescription = ko.observable<string>("");
+            this.eventDateString = ko.observable<string>("");
+            this.eventTimeString = ko.observable<string>("");
+            this.proposedParticipants = ko.observableArray<string>([]);
+            this.selectedProposedParticipants = ko.observableArray<string>([]);
+            this.confirmedParticipants = ko.observableArray<string>([]);
+            this.proposedParticipantName = ko.observable<string>("");
+            this.estimatedCost = ko.observable<string>("");
+            this.tags = ko.observableArray<string>([]);
+            this.tag = ko.observable<string>("");
         }
         
         public onSaveClick(): void {
@@ -38,7 +40,27 @@ namespace AddEvent {
                 return;
             }
             
-            this.tags().push(this.tag());
+            this.tags.push(this.tag());
+            this.tag("");
+        }
+        
+        public onAddProposedParticipantClick(): void {
+            if (IsNullUndefinedOrEmpty(this.proposedParticipantName())) {
+                return;
+            }
+            
+            this.proposedParticipants.push(this.proposedParticipantName());
+            this.proposedParticipantName("");
+        }
+        
+        public onRemoveProposedParticipantsClick(): void {
+            for (let participant of this.selectedProposedParticipants()) {
+                this.proposedParticipants.remove(participant);
+            }
+        }
+        
+        public onTagClick(item: any, event: any): void {
+            //this.proposedParticipants.remove(event.target.textContent);
         }
     }
 }
