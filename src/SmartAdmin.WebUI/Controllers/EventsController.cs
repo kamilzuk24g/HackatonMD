@@ -198,8 +198,8 @@ namespace SmartAdmin.WebUI.Controllers
             var dates = new List<DateTime>();
             for (int i = 0; i < eventData.EventDates.Length; i++)
             {
-                if (DateTime.TryParseExact(eventData.EventDates[i].EventDateString + " " + eventData.EventDates[i].EventTimeString,
-                "yyyy-MM-dd HH:mm", CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime result))
+                if (DateTime.TryParseExact(eventData.EventDates[i].EventDateString,// + " " + eventData.EventDates[i].EventTimeString,
+                "yyyy-MM-dd", CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime result))
                 {
                     dates.Add(result);
                 }
@@ -211,7 +211,7 @@ namespace SmartAdmin.WebUI.Controllers
                 ProposedDate = x
             }));
             await this.applicationDbContext.SaveChangesAsync();
-   
+
             return Ok(databaseModel.Id);
         }
     }
