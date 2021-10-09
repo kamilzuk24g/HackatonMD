@@ -7,8 +7,8 @@ var AddEvent;
             this.eventName = ko.observable("");
             this.eventPlace = ko.observable("");
             this.eventDescription = ko.observable("");
-            this.eventDateString = ko.observable("");
-            this.eventTimeString = ko.observable("");
+            this.eventDates = ko.observableArray([]);
+            this.eventDates.push(new EventDate());
             this.proposedParticipants = ko.observableArray([]);
             this.selectedProposedParticipants = ko.observableArray([]);
             this.confirmedParticipants = ko.observableArray([]);
@@ -31,6 +31,9 @@ var AddEvent;
                 }
             };
             request.send(serializedServerViewModel);
+        };
+        AddEventViewModel.prototype.onAddDate = function () {
+            this.eventDates.push(new EventDate());
         };
         AddEventViewModel.prototype.onTagAddClick = function () {
             if (IsNullUndefinedOrEmpty(this.tag())) {
@@ -63,6 +66,13 @@ var AddEvent;
         return AddEventViewModel;
     }());
     AddEvent.AddEventViewModel = AddEventViewModel;
+    var EventDate = /** @class */ (function () {
+        function EventDate() {
+            this.eventDateString = ko.observable("");
+            this.eventTimeString = ko.observable("");
+        }
+        return EventDate;
+    }());
     var SaveEventServerModel = /** @class */ (function () {
         function SaveEventServerModel() {
         }
@@ -71,8 +81,10 @@ var AddEvent;
             result.EventName = viewModel.eventName();
             result.EventPlace = viewModel.eventPlace();
             result.EventDescription = viewModel.eventDescription();
-            result.EventDateString = viewModel.eventDateString();
-            result.EventTimeString = viewModel.eventTimeString();
+            result.EventDates = [];
+            for (var i = 0; i < viewModel.eventDates().length; i++) {
+                result.EventDates.push({ EventDateString: viewModel.eventDates()[i].eventDateString(), EventTimeString: viewModel.eventDates()[i].eventTimeString() });
+            }
             result.ProposedParticipants = viewModel.proposedParticipants();
             result.ConfirmedParticipants = viewModel.confirmedParticipants();
             result.EstimatedCost = viewModel.estimatedCost();
@@ -85,3 +97,4 @@ var AddEvent;
 var formElement = document.getElementById("frmMain");
 var addEventViewModel = new AddEvent.AddEventViewModel();
 ko.applyBindings(addEventViewModel, formElement);
+//# sourceMappingURL=AddEventViewModel.js.map

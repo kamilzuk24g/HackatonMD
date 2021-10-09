@@ -31,7 +31,7 @@ namespace SmartAdmin.WebUI.Controllers
                      new MyEventViewModel()
                      {
                          Description = @event.EventDescription,
-                         StartDate = @event.FinalEventDate.Value,
+                         StartDate = @event.FinalEventDate ?? DateTime.Now,
                          Place = @event.EventPlace,
                          Title = @event.EventName,
                          IconPath = @"/img/demo/mvc.png"

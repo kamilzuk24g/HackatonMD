@@ -7,6 +7,7 @@ using SmartAdmin.WebUI.ViewModels;
 namespace SmartAdmin.WebUI.Controllers
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Security.Claims;
     using SmartAdmin.WebUI.Data;
@@ -79,64 +80,81 @@ namespace SmartAdmin.WebUI.Controllers
                 case "Id":
                     query = query.OrderBy(s => s.Id);
                     break;
+
                 case "Id_d":
                     query = query.OrderByDescending(s => s.Id);
                     break;
+
                 case "Data":
                     query = query.OrderBy(s => s.FinalEventDate);
                     break;
+
                 case "Data_d":
                     query = query.OrderByDescending(s => s.FinalEventDate);
                     break;
+
                 case "Title":
                     query = query.OrderBy(s => s.EventName);
                     break;
+
                 case "Title_d":
                     query = query.OrderByDescending(s => s.EventName);
                     break;
+
                 case "Description":
                     query = query.OrderBy(s => s.EventDescription);
                     break;
+
                 case "Description_d":
                     query = query.OrderByDescending(s => s.EventDescription);
                     break;
+
                 case "Place":
                     query = query.OrderBy(s => s.EventPlace);
                     break;
+
                 case "Place_d":
                     query = query.OrderByDescending(s => s.EventPlace);
                     break;
+
                 case "Price":
                     query = query.OrderBy(s => s.EstimatedCostPerPerson);
                     break;
+
                 case "Price_d":
                     query = query.OrderByDescending(s => s.EstimatedCostPerPerson);
                     break;
+
                 case "Time_":
                     query = query.OrderBy(s => s.Duration);
                     break;
+
                 case "Time_d":
                     query = query.OrderByDescending(s => s.Duration);
                     break;
+
                 case "People":
                     query = query.OrderBy(s => s.PeopleCount);
                     break;
+
                 case "People_d":
                     query = query.OrderByDescending(s => s.PeopleCount);
                     break;
+
                 case "Tags":
                     query = query.OrderByDescending(s => s.TagsCount);
                     break;
+
                 case "Tags_d":
                     query = query.OrderByDescending(s => s.TagsCount);
                     break;
+
                 default:
                     query = query.OrderByDescending(s => s.Id);
                     break;
             }
 
             var list = await PagingList<Event>.CreateAsync(query, filters.pageIndex, pageSize);
-
 
             return View(list);
         }
@@ -156,7 +174,7 @@ namespace SmartAdmin.WebUI.Controllers
             {
                 parsedEstimatedCostNullable = parsedEstimatedCost;
             }
-            
+
             var databaseModel = new Event
             {
                 EventName = eventData.EventName,
@@ -167,7 +185,7 @@ namespace SmartAdmin.WebUI.Controllers
                 {
                     Name = pp,
                     IsProposed = true
-                }).Concat(eventData.ConfirmedParticipants.Select(cp => new EventParticipant { Name = cp})).ToList(),
+                }).Concat(eventData.ConfirmedParticipants.Select(cp => new EventParticipant { Name = cp })).ToList(),
                 Tags = eventData.Tags.Select(t => new Tag
                 {
                     Name = t
@@ -176,7 +194,24 @@ namespace SmartAdmin.WebUI.Controllers
 
             this.applicationDbContext.Events.Add(databaseModel);
             await this.applicationDbContext.SaveChangesAsync();
-            
+
+            var dates = new List<DateTime>();
+            for (int i = 0; i < eventData.EventDates.Length; i++)
+            {
+                if (DateTime.TryParseExact(eventData.EventDates[i].EventDateString + " " + eventData.EventDates[i].EventTimeString,
+                "yyyy-MM-dd HH:mm", CultureInfo.CurrentCulture, DateTimeStyles.None, out DateTime result))
+                {
+                    dates.Add(result);
+                }
+            }
+
+            this.applicationDbContext.ProposedEventDates.AddRange(dates.Select(x => new ProposedEventDate()
+            {
+                EventId = databaseModel.Id,
+                ProposedDate = x
+            }));
+            await this.applicationDbContext.SaveChangesAsync();
+
             return Ok();
         }
     }

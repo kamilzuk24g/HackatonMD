@@ -47,26 +47,31 @@
                 <div style="margin-bottom: 10px;">
                     <div class="form-group fs-lg fw-300 p-5 bg-white border-faded rounded mb-g" >
                         <legend>Data i czas wydarzenia</legend>
-                        <div style="margin-bottom: 5px;" class="row">
-                            <div class="col-xl-4">
-                                <label class="form-label" for="inpDate">Data wydarzenia</label>
-                                <input class="form-control" id="inpDate" type="date" name="inpDate" value="2023-07-23"/>
-                            </div>
-                            <div class="col" style="display: flex; align-items: center; align-content: center; padding-left: 20px; padding-top: 13px;">
-                                <input class="custom-control-input" id="inpForced" type="checkbox" name="inpForced"/>
-                                <label class="custom-control-label" for="inpForced">Wymuszona</label>
-                            </div>
-                        </div>
-                        <div style="margin-bottom: 7px;" class="row">
-                            <div class="col">
-                                <label class="form-label" for="inpTime">Czas wydarzenia</label>
-                                <input class="form-control" id="inpTime" type="time" name="inpTime"/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col" style="display: flex; justify-content: right;">
-                                <button type="button" class="btn btn-primary"><i class="fal fa-plus-circle"></i></button>
-                            </div>
+
+                        <div data-bind="foreach: eventDates">
+                            @*<div data-bind="with:">*@
+                                <div style="margin-bottom: 5px;" class="row">
+                                    <div class="col-xl-4">
+                                        <label class="form-label" for="inpDate">Data wydarzenia</label>
+                                        <input class="form-control" id="inpDate" type="date" name="inpDate" value="2023-07-23" data-bind="value: eventDateString" />
+                                    </div>
+                                    <div class="col" style="display: flex; align-items: center; align-content: center; padding-left: 20px; padding-top: 13px;">
+                                        <input class="custom-control-input" id="inpForced" type="checkbox" name="inpForced" />
+                                        <label class="custom-control-label" for="inpForced">Wymuszona</label>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 7px;" class="row">
+                                    <div class="col">
+                                        <label class="form-label" for="inpTime">Czas wydarzenia</label>
+                                        <input class="form-control" id="inpTime" type="time" name="inpTime" data-bind="value: eventTimeString" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col" style="display: flex; justify-content: right;">
+                                        <button type="button" class="btn btn-primary" data-bind="click: $root.onAddDate.bind($root)"><i class="fal fa-plus-circle"></i></button>
+                                    </div>
+                                </div>
+                            @*</div>*@
                         </div>
                     </div>
                 </div>
