@@ -7,6 +7,7 @@ using SmartAdmin.WebUI.ViewModels;
 using SmartAdmin.WebUI.Data;
 using SmartAdmin.WebUI.Models;
 using SmartAdmin.WebUI.Data.Models;
+using SmartAdmin.WebUI.Extensions;
 
 namespace SmartAdmin.WebUI.Controllers
 {
@@ -21,46 +22,25 @@ namespace SmartAdmin.WebUI.Controllers
 
         public IActionResult MyEvents()
         {
-            var model = new List<MyEventViewModel>()
-            {
-                new MyEventViewModel()
-                {
-                    Id = 1,
-                     Description = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-                      StartDate = new DateTime(2021,08,04),
-                      Place = "Plac Uni lubelskiej",
-                      IconPath = @"/img/demo/rails.png",
-                      Title = "Moje pierwsze wydarzenie!"
-                },
-                new MyEventViewModel()
-                {
-                    Id = 2,
-                     Description = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-                      StartDate = new DateTime(2021,09,04),
-                      Place = "Orlik @Stegny",
-                      IconPath = @"/img/demo/react.png",
-                      Title = "Moje drugie wydarzenie!"
-                },
-                new MyEventViewModel()
-                {
-                    Id = 3,
-                     Description = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-                      StartDate = new DateTime(2021,10,04),
-                      Place = "MiNi PW",
-                      IconPath = @"/img/demo/mvc.png",
-                      Title = "Moje trzecie wydarzenie!",
-                      MainPhotoPath = @"/img/demo/mvc.png",
-                },
-            };
+            var myEvents = this.applicationDbContext.EventParticipants
+                .Where(q => q.Name == User.Identity.Name)
+                .Join(this.applicationDbContext.Events,
+                 ep => ep.EventId,
+                 e => e.Id,
+                 (paricipant, @event) =>
+                     new MyEventViewModel()
+                     {
+                         Description = @event.EventDescription,
+                         StartDate = @event.FinalEventDate.Value,
+                         Place = @event.EventPlace,
+                         Title = @event.EventName
+                     }
+                 )
+                .ToList();
+
+            var model = myEvents.Any() ?
+                myEvents.groupEvents() :
+                mockData.groupEvents();
 
             return View(model);
         }
@@ -195,5 +175,59 @@ namespace SmartAdmin.WebUI.Controllers
 
             return RedirectToAction("Details", new { id = id });
         }
+
+        private List<MyEventViewModel> mockData = new List<MyEventViewModel>()
+            {
+                new MyEventViewModel()
+                {
+                     Id = 1,
+                     Description = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+                      StartDate = new DateTime(2021, 08, 04),
+                      Place = "Plac Uni lubelskiej",
+                      IconPath = @"/img/demo/rails.png",
+                      Title = "Moje pierwsze wydarzenie!"
+                },
+                new MyEventViewModel()
+                {
+                    Id = 2,
+                     Description = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+                      StartDate = new DateTime(2021, 09, 04),
+                      Place = "Orlik @Stegny",
+                      IconPath = @"/img/demo/react.png",
+                      Title = "Moje drugie wydarzenie!"
+                },
+                new MyEventViewModel()
+                {
+                    Id = 3,
+                     Description = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+                      StartDate = new DateTime(2021, 10, 04),
+                      Place = "MiNi PW",
+                      IconPath = @"/img/demo/mvc.png",
+                      Title = "Moje trzecie wydarzenie!",
+                      MainPhotoPath = @"/img/demo/mvc.png",
+                },
+                new MyEventViewModel()
+                {
+                     Id = 4,
+                     Description = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+                      StartDate = new DateTime(2021, 10, 04),
+                      Place = "MiNi PW2",
+                      IconPath = @"/img/demo/mvc.png",
+                      Title = "Moje ARW wydarzenie!",
+                      MainPhotoPath = @"/img/demo/mvc.png",
+                    },
+                };
     }
 }
