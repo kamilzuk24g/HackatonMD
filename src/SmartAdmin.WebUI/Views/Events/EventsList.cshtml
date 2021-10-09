@@ -10,7 +10,6 @@
     //Layout = "~/Views/Shared/_Layout.cshtml";
     SmartAdmin.WebUI.Models.EventsListFilterModel filters = ViewData["filters"] as SmartAdmin.WebUI.Models.EventsListFilterModel;
 }
-@section HeadBlock {}
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
@@ -241,8 +240,8 @@
                                     <tr>
                                         <th></th>
                                         <th>
-                                            <input asp-for="@filters.filterDateFrom" type="date" placeholder="From" id="tbxDateFrom" class="form-control tbx_filtr" value="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))" />
-                                            <input asp-for="@filters.filterDateTo" type="date" placeholder="To" id="tbxDateTo" class="form-control tbx_filtr" value="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))" />
+                                            <input asp-for="@filters.filterDateFrom" type="date" placeholder="Od" id="tbxDateFrom" class="form-control tbx_filtr" value="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))" />
+                                            <input asp-for="@filters.filterDateTo" type="date" placeholder="Do" id="tbxDateTo" class="form-control tbx_filtr" value="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))" />
                                         </th>
                                         <th>
                                             <input asp-for="@filters.filterTitle" id="tbxTitle" type="text" class="form-control tbx_filtr" value="@filters.filterTitle" />
@@ -254,16 +253,16 @@
                                             <input asp-for="@filters.filterPlace" id="tbxPlace" type="text" class="form-control tbx_filtr" value="@filters.filterPlace" />
                                         </th>
                                         <th>
-                                            <input asp-for="@filters.filterPriceFrom" id="tbxPriceFrom" type="text" placeholder="From" class="form-control tbx_filtr" value="@filters.filterPriceFrom" />
-                                            <input asp-for="@filters.filterPriceTo" id="tbxPriceTo" type="text" placeholder="To" class="form-control tbx_filtr" value="@filters.filterPriceTo" />
+                                            <input asp-for="@filters.filterPriceFrom" id="tbxPriceFrom" type="text" placeholder="Od" class="form-control tbx_filtr" value="@filters.filterPriceFrom" />
+                                            <input asp-for="@filters.filterPriceTo" id="tbxPriceTo" type="text" placeholder="Do" class="form-control tbx_filtr" value="@filters.filterPriceTo" />
                                         </th>
                                         <th>
-                                            <input asp-for="@filters.filterTimeFrom" id="tbxTimeFrom" type="text" placeholder="From" class="form-control tbx_filtr" value="@filters.filterTimeFrom" />
-                                            <input asp-for="@filters.filterTimeTo" id="tbxTimeTo" type="text" placeholder="To" class="form-control tbx_filtr" value="@filters.filterTimeTo" />
+                                            <input asp-for="@filters.filterTimeFrom" id="tbxTimeFrom" type="text" placeholder="Od" class="form-control tbx_filtr" value="@filters.filterTimeFrom" />
+                                            <input asp-for="@filters.filterTimeTo" id="tbxTimeTo" type="text" placeholder="Do" class="form-control tbx_filtr" value="@filters.filterTimeTo" />
                                         </th>
                                         <th>
-                                            <input asp-for="@filters.filterPeopleFrom" id="tbxPeople" type="text" placeholder="From" class="form-control tbx_filtr" value="@filters.filterPeopleFrom" />
-                                            <input asp-for="@filters.filterPeopleTo" id="tbxPeople" type="text" placeholder="From" class="form-control tbx_filtr" value="@filters.filterPeopleTo" />
+                                            <input asp-for="@filters.filterPeopleFrom" id="tbxPeople" type="text" placeholder="Od" class="form-control tbx_filtr" value="@filters.filterPeopleFrom" />
+                                            <input asp-for="@filters.filterPeopleTo" id="tbxPeople" type="text" placeholder="Do" class="form-control tbx_filtr" value="@filters.filterPeopleTo" />
                                         </th>
                                         <th style="width: 120px;">
                                             <div class="input-group">
@@ -319,12 +318,3 @@
             </form>
     </div>
 </div>
-
-@section ScriptsBlock {
-
-}
-
-
-
-
-
