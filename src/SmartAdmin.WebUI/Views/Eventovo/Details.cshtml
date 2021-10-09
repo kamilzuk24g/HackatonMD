@@ -1,5 +1,13 @@
 ﻿@model SmartAdmin.WebUI.ViewModels.EventDetailsViewModel
 
+@{
+    ViewData["Title"] = "Groups";
+    ViewData["PageName"] = "eventovo_details";
+    ViewData["Heading"] = "<i class='fal fa-info-circle'></i> Szczegóły wydarzenia";
+    ViewData["Category1"] = "Eventovo";
+}
+@section HeadBlock {}
+
 <div style="margin-bottom: 5px; display: -webkit-box; -webkit-box-orient: horizontal;" class="row panel">
     <div class="col-xl-4">
         <img src="@(Model.MainPhotoPath ?? "/img/card-backgrounds/cover-3-lg.png")" class="col" alt="..." style="height:100%; width:100%;">
@@ -7,6 +15,15 @@
     <div class="col-xl-8">
         <div class="form-group" style="align-items: center; align-content: center;">
             <legend class="align-self-center" style="text-align: -webkit-center;">@Model.Title</legend>
+
+            @if (!Model.UserTakesPartInEvent)
+            {
+                <button type="button" class="btn btn-light waves-effect waves-themed" onclick="location.href = '/Eventovo/TakePart?id=@Model.Id';">Weź udział</button>
+            }
+            else
+            {
+                <button type="button" class="btn btn-light waves-effect waves-themed" onclick="location.href = '/Eventovo/Leave?id=@Model.Id';">Opuść wydarzenie</button>
+            }
         </div>
         <div class="form-group" style="height:100%">
             <div class="row" style="height:20%; margin-bottom: 20px;">
@@ -17,7 +34,7 @@
                             <legend>W dniu @Model.FinalEventDate.Value.ToShortDateString()</legend>
                         </div>
                     </div>
-                }                 
+                }
                 <div class="col align-self-md-center p-2 bg-primary-400 rounded-pill" style="text-align: -webkit-center;">
                     <div style="display:inline-flex">
                         @*<i class="fal fa-cog"></i>*@
@@ -40,9 +57,9 @@
             {
                 <div class="form-group" style="height:80%">
                     <legend class="align-self-left" style="width: 100%; overflow: hidden; height: 150px; line-height: 30px;">
-                         @Model.EstimatedCostPerPerson
+                        @Model.EstimatedCostPerPerson
                     </legend>
-                </div>                
+                </div>
             }
         </div>
     </div>
@@ -55,17 +72,44 @@
                 <table class="table m-0 mylist">
                     <thead>
                         <tr>
-                            <th>Imię i nazwisko</th>                            
+                            <th>Imię i nazwisko</th>
+                            @foreach (var date in Model.ProposedEventDates)
+                            {
+                                <th>@date.Date.ToShortDateString()</th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
-                        @*@foreach (var item in Model.Groups)
+                        @foreach (var user in Model.EventParticipants)
+                        {
+                            <tr>
+                                <td>@user.Name</td>
+
+                                @foreach (var date in Model.ProposedEventDates)
+                                {
+                                    if (user.SelectedDates.Contains(date.Date))
+                                    {
+                                        <td>
+                                            <ul class="fa-ul">
+                                                <li><i class="fa-li fa fa-check-square"></i></li>
+                                            </ul>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td></td>
+                                    }
+
+                                }
+                            </tr>
+                        }
+                        <tr>
+                            <td></td>
+                            @foreach (var date in Model.ProposedEventDates)
                             {
-                                <tr onclick="location.href = '/Group/Details?id=@item.Id';">
-                                    <td scope="row">@Html.ActionLink(item.Name, "Details", "Group", new { id = item.Id })</td>
-                                    <td>@item.Description</td>
-                                </tr>
-                            }*@
+                                <td>@date.Count</td>
+                            }
+                        </tr>
                     </tbody>
                 </table>
             </div>
