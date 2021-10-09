@@ -32,7 +32,20 @@ namespace AddEvent {
         }
         
         public onSaveClick(): void {
-            alert("aaa");
+            let serverViewModel: SaveEventServerModel = SaveEventServerModel.fromAddEventViewModel(this);
+            let serializedServerViewModel = JSON.stringify(serverViewModel);
+            let request = new XMLHttpRequest();
+            request.open("POST", "SaveEvent");
+            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            request.onreadystatechange = function()
+                {
+                    if(request.readyState == 4 && request.status == 200)
+                    {
+                        alert(request.responseText);
+                    }
+                }
+                
+            request.send(serializedServerViewModel); 
         }
         
         public onTagAddClick(): void {
@@ -61,6 +74,33 @@ namespace AddEvent {
         
         public onTagClick(item: any, event: any): void {
             //this.proposedParticipants.remove(event.target.textContent);
+        }
+    }
+    
+    class SaveEventServerModel {
+        public EventName: string;
+        public EventPlace: string;
+        public EventDescription: string;
+        public EventDateString: string;
+        public EventTimeString: string;
+        public ProposedParticipants: string[];
+        public ConfirmedParticipants: string[];
+        public EstimatedCost: string;
+        public Tags: string[];
+        
+        static fromAddEventViewModel(viewModel: AddEventViewModel): SaveEventServerModel {
+            let result = new SaveEventServerModel();
+            result.EventName = viewModel.eventName();
+            result.EventPlace = viewModel.eventPlace();
+            result.EventDescription = viewModel.eventDescription();
+            result.EventDateString = viewModel.eventDateString();
+            result.EventTimeString = viewModel.eventTimeString();
+            result.ProposedParticipants = viewModel.proposedParticipants();
+            result.ConfirmedParticipants = viewModel.confirmedParticipants();
+            result.EstimatedCost = viewModel.estimatedCost();
+            result.Tags = viewModel.tags();
+            
+            return result;
         }
     }
 }

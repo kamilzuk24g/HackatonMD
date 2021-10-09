@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using SmartAdmin.WebUI.Models;
 using System.Threading.Tasks;
+using SmartAdmin.WebUI.ViewModels;
 
 namespace SmartAdmin.WebUI.Controllers
 {
@@ -137,6 +139,36 @@ namespace SmartAdmin.WebUI.Controllers
 
 
             return View(list);
+        }
+
+        public async Task<IActionResult> AddEvent()
+        {
+            return View("~/Views/Eventovo/addevent.cshtml");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveEvent([FromBody] SaveEventViewModel eventData)
+        {
+            decimal? parsedEstimatedCostNullable = null;
+            if (decimal.TryParse(eventData.EstimatedCost, out decimal parsedEstimatedCost))
+            {
+                parsedEstimatedCostNullable = parsedEstimatedCost;
+            }
+            
+            var databaseModel = new Event
+            {
+                EventName = eventData.EventName,
+                EstimatedCostPerPerson = parsedEstimatedCost,
+                EventDescription = eventData.EventDescription,
+                EventPlace = eventData.EventPlace,
+                EventParticipants = eventData.ProposedParticipants.Select(pp => new EventParticipant
+                {
+                    Name = pp,
+                    IsProposed = true
+                }).Concat(eventData.ConfirmedParticipants.Select(cp => new EventParticipant { Name = cp}).ToList()).ToList()
+            };
+            
+            return Ok();
         }
     }
 }
