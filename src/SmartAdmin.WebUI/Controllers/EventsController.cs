@@ -177,7 +177,7 @@ namespace SmartAdmin.WebUI.Controllers
             this.applicationDbContext.Events.Add(databaseModel);
             await this.applicationDbContext.SaveChangesAsync();
             
-            return Ok();
+            return Ok(databaseModel.Id);
         }
     }
 }

@@ -45,7 +45,7 @@ namespace AddEvent {
                 {
                     if(request.readyState == 4 && request.status == 200)
                     {
-                        alert(request.responseText);
+                        window.location.href = `/eventovo/details?id=${request.responseText}`;
                     }
                 }
                 
