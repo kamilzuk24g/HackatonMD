@@ -2,7 +2,7 @@
     <fieldset>
         <div class="row" style="margin-bottom: 15px;">
             <div class="col-xl-6">
-                <div class="form-group" style="border-style: solid">
+                <div class="form-group fs-lg fw-300 p-5 bg-white border-faded rounded mb-g">
                     <legend>Informacje ogólne</legend>
                     <div class="row">
                         <div class="col">
@@ -37,7 +37,7 @@
         <div class="row">
             <div class="col-xl-6">
                 <div style="margin-bottom: 10px;">
-                    <div class="form-group" style="border-style: solid">
+                    <div class="form-group fs-lg fw-300 p-5 bg-white border-faded rounded mb-g" >
                         <legend>Data i czas wydarzenia</legend>
                         <div style="margin-bottom: 5px;" class="row">
                             <div class="col-xl-4">
@@ -67,13 +67,13 @@
         
         <div class="row" style="margin-bottom: 15px;">
             <div class="col-xl-6">
-                <div class="form-group" style="border-style: solid">
+                <div class="form-group fs-lg fw-300 p-5 bg-white border-faded rounded mb-g" >
                     <legend>Informacje o uczestnikach</legend>
                     <div class="row">
                         <div class="col">
                             <div>
                                 <label class="form-label" for="msProposedParticipants">Proponowani uczestnicy</label>
-                                <select id="msProposedParticipants" multiple="" class="form-control">
+                                <select id="msProposedParticipants" multiple="" class="form-control" data-bind="options: proposedParticipants, selectedOptions: selectedProposedParticipants">
                                 </select>
                             </div>
                         </div>
@@ -88,15 +88,15 @@
                     <div class="row">
                         <div class="col">
                             <div class="row">
-                                <div class="col-7">
-                                    <label for="inpProposedParticipantName" class="form-label">Nazwa proponowanego uczestnika</label>
+                                <div class="col-6">
+                                    <label for="inpProposedParticipantName" class="form-label">Nazwa uczestnika</label>
                                     <input type="text" class="form-control" id="inpProposedParticipantName" name="inpProposedParticipantName" data-bind="value: proposedParticipantName" />
                                 </div>
                                 <div class="col" style="display: flex; justify-content: flex-end;">
-                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end"><i class="fal fa-plus-circle"></i></button>
+                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end" data-bind="click: onAddProposedParticipantClick"><i class="fal fa-plus-circle"></i></button>
                                 </div>
                                 <div class="col" style="display: flex; justify-content: flex-end;">
-                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end"><i class="fal fa-minus-circle"></i></button>
+                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end" data-bind="click: onRemoveProposedParticipantsClick"><i class="fal fa-minus-circle"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
         
         <div class="row" style="margin-bottom: 15px;">
             <div class="col-xl-6">
-                <div class="form-group" style="border-style: solid">
+                <div class="form-group fs-lg fw-300 p-5 bg-white border-faded rounded mb-g" >
                     <legend>Informacje dodatkowe</legend>
                     <div class="row">
                         <div class="col">
@@ -130,7 +130,7 @@
                     <div class="row">
                         <div class="col">
                             <div style="margin-bottom: 10px;">
-                                <div id="dTags" data-bind="foreach: tags"><span data-bind="text: $data"></span></div>
+                                <div id="dTags" data-bind="foreach: tags"><span data-bind="text: $data, click: $parent.onTagClick" style="border-style: dotted"></span></div>
                             </div>
                         </div>
                     </div> 

@@ -27,14 +27,14 @@
 			<i class="ni ni-menu"></i>
 		</a>
 	</div>
-	<div class="search">
+	@*<div class="search">
 		<form class="app-forms hidden-xs-down" role="search" action="page_search.html" autocomplete="off">
 			<input type="text" id="search-field" placeholder="Search for anything" class="form-control" tabindex="1">
 			<a href="#" onclick="return false;" class="btn-danger btn-search-close js-waves-off d-none" data-action="toggle" data-class="mobile-search-on">
 				<i class="fal fa-times"></i>
 			</a>
 		</form>
-	</div>
+	</div>*@
 	<div class="ml-auto d-flex">
 		<div class="hidden-sm-up">
 			<a href="#" class="header-icon" data-action="toggle" data-class="mobile-search-on" data-focus="search-field" title="Search">
@@ -49,14 +49,14 @@
 			</a>
 		</div>	
 		}
-		<div>
+		@*<div>
 			<a href="#" class="header-icon" data-toggle="dropdown" title="My Apps">
 				<i class="fal fa-cube"></i>
 			</a>
 			<div class="dropdown-menu dropdown-menu-animated w-auto h-auto">
 				<partial name="_DropdownApp"/>
 			</div>
-		</div>
+		</div>*@
 		@if (ViewBag.ChatInterface?.Length > 0)
 {
 		<a href="#" class="header-icon" data-toggle="modal" data-target=".js-modal-messenger">
