@@ -9,8 +9,8 @@
 @section HeadBlock {}
 
 <div style="margin-bottom: 5px; display: -webkit-box; -webkit-box-orient: horizontal;" class="row panel">
-    <div class="col-xl-4">        
-        <img src="@(Model.MainPhotoPath ?? "/img/card-backgrounds/cover-3-lg.png")" class="col" alt="..." style=" width:100%; padding: 20px;">      
+    <div class="col-xl-4">
+        <img src="@(Model.MainPhotoPath ?? "/img/card-backgrounds/cover-3-lg.png")" class="col" alt="..." style=" width:100%; padding: 20px;">
     </div>
     <div class="col-xl-8">
         <div class="form-group" style="align-items: center; align-content: center;">
@@ -57,9 +57,17 @@
                                     }
                                 </div>
                             </div>
-                        }       
                         }
                     }
+                    else
+                    {
+                        <div class="col align-self-md-center p-2 bg-primary-400 rounded-pill" style="text-align: -webkit-center;">
+                            <div>
+                                <legend style=" white-space: nowrap;">@(new DateTime(2021,10,12,12,00,00).ToLongDateString())</legend>
+                            </div>
+                        </div>
+                    }
+                }
 
                 <div class="col align-self-md-center p-2 bg-primary-400 rounded-pill" style="text-align: -webkit-center;">
                     <div style="display:inline-flex">
