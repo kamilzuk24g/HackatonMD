@@ -26,7 +26,7 @@ namespace SmartAdmin.WebUI.Models
                 // SmartAdmin Default Settings
                 controller.ViewBag.App = "Eventovo";
                 controller.ViewBag.AppName = "Eventovo";
-                controller.ViewBag.AppFlavor = "Eventovo";
+                controller.ViewBag.AppFlavor = "VENTOVO";
                 controller.ViewBag.AppFlavorSubscript = "";
                 controller.ViewBag.User = controller.User.FindFirstValue(ClaimTypes.Name);
                 controller.ViewBag.Email = controller.User.FindFirstValue(ClaimTypes.Email);

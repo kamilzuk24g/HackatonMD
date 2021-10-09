@@ -2,9 +2,9 @@
 
 @{
     ViewData["Title"] = "Groups";
-    ViewData["PageName"] = "eventovo_details";
+    ViewData["PageName"] = "events_eventslist";
     ViewData["Heading"] = "<i class='fal fa-info-circle'></i> Szczegóły wydarzenia";
-    ViewData["Category1"] = "Eventovo";
+    ViewData["Category1"] = "details";
 }
 @section HeadBlock {}
 
@@ -36,27 +36,30 @@
                     </div>
                 }
                 else
-                {                    
-                    var max = Model.ProposedEventDates.Max(x => x.Count);
-                    @if (max > 0)
+                {
+                    @if (Model.ProposedEventDates.Count > 0)
                     {
-                        var dates = string.Join(", ", Model.ProposedEventDates.Where(x => x.Count == max).Select(x => x.Date.ToShortDateString()));
+                        var max = Model.ProposedEventDates.Max(x => x.Count);
+                        @if (max > 0)
+                        {
+                            var dates = string.Join(", ", Model.ProposedEventDates.Where(x => x.Count == max).Select(x => x.Date.ToShortDateString()));
 
-                        <div class="col align-self-md-center p-2 bg-primary-400 rounded-pill" style="text-align: -webkit-center;">
-                            <div>
+                            <div class="col align-self-md-center p-2 bg-primary-400 rounded-pill" style="text-align: -webkit-center;">
+                                <div>
 
-                                @if (Model.ProposedEventDates.Where(x => x.Count == max).Count() > 1)
-                                {
-                                    <legend>Najczęsciej wybierane terminy: @dates</legend>
-                                }
-                                else
-                                {
-                                    <legend>Najczęsciej wybierany termin: @dates</legend>
-                                }
+                                    @if (Model.ProposedEventDates.Where(x => x.Count == max).Count() > 1)
+                                    {
+                                        <legend>Najczęsciej wybierane terminy: @dates</legend>
+                                    }
+                                    else
+                                    {
+                                        <legend>Najczęsciej wybierany termin: @dates</legend>
+                                    }
+                                </div>
                             </div>
-                        </div>
-                    }                  
-                }
+                        }       
+                        }
+                    }
 
                 <div class="col align-self-md-center p-2 bg-primary-400 rounded-pill" style="text-align: -webkit-center;">
                     <div style="display:inline-flex">

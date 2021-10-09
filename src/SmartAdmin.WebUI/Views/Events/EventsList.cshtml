@@ -1,8 +1,8 @@
 ﻿@model PagingList<SmartAdmin.WebUI.Data.Models.Event>
 @{
-    ViewData["Title"] = "It's Events time!";
+    ViewData["Title"] = "Czas na wydarzenia!";
     ViewData["PageName"] = "events_eventslist";
-    ViewData["Heading"] = "<i class='fal fa-clock text-primary'></i> It's Events time!";
+    ViewData["Heading"] = "<i class='fal fa-clock text-primary'></i> Czas na wydarzenia!";
     ViewData["Category1"] = "events";
     //ViewData["PageDescription"] = "Documentation and examples for opt-in styling of tables (given their prevelant use in JavaScript plugins) with Bootstrap.";
 
@@ -29,17 +29,15 @@
 
     <div class="col-lg-12 col-xl-12">
 
-        <form asp-page="/events/EventsList" method="get">
+        <form asp-page="/EventsList" method="get">
 
             <div id="panel-8" class="panel">
                 <div class="panel-hdr">
                     <h2>
-                        This could be Your events!
+                        Te wydarzenia mogą być z Twoim udziałem!
                     </h2>
                     <div class="panel-toolbar">
-                        <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                         <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                        <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
                     </div>
                 </div>
                 <div class="panel-container show">
@@ -281,35 +279,35 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Id)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.FinalEventDate)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.EventName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.EventDescription)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.EventPlace)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.EstimatedCostPerPerson)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Duration)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.PeopleCount)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Tags)
-                                            </td>
-                                        </tr>
+                                    <tr onclick="location.href = '@(Url.Action("Details", "Eventovo", new { id = item.Id }))'">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FinalEventDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EventName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EventDescription)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EventPlace)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EstimatedCostPerPerson)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Duration)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PeopleCount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Tags)
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
