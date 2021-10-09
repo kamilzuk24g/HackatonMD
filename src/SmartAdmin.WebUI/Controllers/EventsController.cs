@@ -211,8 +211,8 @@ namespace SmartAdmin.WebUI.Controllers
                 ProposedDate = x
             }));
             await this.applicationDbContext.SaveChangesAsync();
-
-            return Ok();
+   
+            return Ok(databaseModel.Id);
         }
     }
 }
