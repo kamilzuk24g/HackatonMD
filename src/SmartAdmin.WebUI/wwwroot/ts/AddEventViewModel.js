@@ -31,3 +31,4 @@ var AddEvent;
 })(AddEvent || (AddEvent = {}));
 var formElement = document.getElementById("frmMain");
 ko.applyBindings(new AddEvent.AddEventViewModel(), formElement);
+//# sourceMappingURL=AddEventViewModel.js.map
