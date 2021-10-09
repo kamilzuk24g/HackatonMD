@@ -20,8 +20,8 @@ namespace SmartAdmin.WebUI.Models
         public string filterPlace { get; set; }
         public decimal? filterPriceFrom { get; set; }
         public decimal? filterPriceTo { get; set; }
-        public DateTime? filterTimeFrom { get; set; }
-        public DateTime? filterTimeTo { get; set; }
+        public decimal? filterTimeFrom { get; set; }
+        public decimal? filterTimeTo { get; set; }
         public int? filterPeopleFrom { get; set; }
         public int? filterPeopleTo { get; set; }
         public string filterTags { get; set; }

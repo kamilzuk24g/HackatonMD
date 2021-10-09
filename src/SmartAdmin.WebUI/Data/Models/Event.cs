@@ -15,5 +15,8 @@ namespace SmartAdmin.WebUI.Data.Models
         public List<EventParticipant> EventParticipants { get; set; }
         public decimal? EstimatedCostPerPerson { get; set; }
         public List<Tag> Tags { get; set; }
+        public decimal? Duration { get; set; }
+        public int TagsCount { get; set; }
+        public int PeopleCount { get; set; }
     }
 }

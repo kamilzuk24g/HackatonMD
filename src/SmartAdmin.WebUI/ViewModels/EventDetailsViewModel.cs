@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SmartAdmin.WebUI.Data.Models;
+using SmartAdmin.WebUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +25,10 @@ namespace SmartAdmin.WebUI.ViewModels
 
         public string EstimatedCostPerPerson { get; set; }
 
-        public List<DateTime> ProposedEventDates { get; set; }
+        public bool UserTakesPartInEvent { get; set; }
+
+        public List<ProposedEventDatesWithSummary> ProposedEventDates { get; set; }
+
+        public List<EventParticipantExtended> EventParticipants { get; set; }
     }
 }

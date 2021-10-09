@@ -1,4 +1,5 @@
-﻿@{
+﻿@model PagingList<SmartAdmin.WebUI.Data.Models.Event>
+@{
     ViewData["Title"] = "It's Events time!";
     ViewData["PageName"] = "events_eventslist";
     ViewData["Heading"] = "<i class='fal fa-clock text-primary'></i> It's Events time!";
@@ -121,7 +122,7 @@
                                            asp-route-filters.filterTimeTo="@filters.filterTimeTo"
                                            asp-route-filters.filterPeopleFrom="@filters.filterPeopleFrom"
                                            asp-route-filters.filterPeopleTo="@filters.filterPeopleTo">
-                                            Tytół
+                                            Tytuł
                                         </a>
                                     </th>
                                     <th>
@@ -266,39 +267,38 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                    <td>Table cell</td>
-                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FinalEventDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EventName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EventDescription)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EventPlace)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EstimatedCostPerPerson)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Duration)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PeopleCount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Tags)
+                                        </td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
