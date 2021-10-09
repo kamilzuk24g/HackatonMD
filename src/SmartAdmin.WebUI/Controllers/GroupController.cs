@@ -40,6 +40,11 @@
 
             if (!string.IsNullOrEmpty(viewModel.SearchValue))
             {
+                if (viewModel.SearchValue.StartsWith("#"))
+                {
+                    viewModel.SearchValue = viewModel.SearchValue.Replace("#", "");
+                }
+
                 var filteredGroups = this.applicationDbContext.Groups.Where(x => x.Name.IndexOf(viewModel.SearchValue, StringComparison.OrdinalIgnoreCase) > -1 ||
                 x.Description.IndexOf(viewModel.SearchValue, StringComparison.OrdinalIgnoreCase) > -1).Select(x => x.Id).ToList();
 
