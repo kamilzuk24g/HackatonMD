@@ -1,0 +1,77 @@
+﻿@model SmartAdmin.WebUI.ViewModels.EventDetailsViewModel
+
+<div style="margin-bottom: 5px; display: -webkit-box; -webkit-box-orient: horizontal;" class="row panel">
+    <div class="col-xl-4">
+        <img src="@(Model.MainPhotoPath ?? "/img/card-backgrounds/cover-3-lg.png")" class="col" alt="..." style="height:100%; width:100%;">
+    </div>
+    <div class="col-xl-8">
+        <div class="form-group" style="align-items: center; align-content: center;">
+            <legend class="align-self-center" style="text-align: -webkit-center;">@Model.Title</legend>
+        </div>
+        <div class="form-group" style="height:100%">
+            <div class="row" style="height:20%; margin-bottom: 20px;">
+                @if (Model.FinalEventDate.HasValue)
+                {
+                    <div class="col align-self-md-center p-2 bg-primary-400 rounded-pill" style="text-align: -webkit-center;">
+                        <div>
+                            <legend>W dniu @Model.FinalEventDate.Value.ToShortDateString()</legend>
+                        </div>
+                    </div>
+                }                 
+                <div class="col align-self-md-center p-2 bg-primary-400 rounded-pill" style="text-align: -webkit-center;">
+                    <div style="display:inline-flex">
+                        @*<i class="fal fa-cog"></i>*@
+                        <i class="fal fa-map-marker-alt fa-2x"></i>
+                        <legend style="display:inline">@Model.Place</legend>
+                    </div>
+                </div>
+                <div class="col" style="text-align: -webkit-center;">
+                    <div>
+                        <img src="@Model.IconPath" class="col" style="max-width:80px;width:100%" alt="...">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="height:80%">
+                <legend class="align-self-left" style="width: 100%; overflow: hidden; height: 150px; line-height: 30px;">
+                    @Model.Description
+                </legend>
+            </div>
+            @if (!string.IsNullOrEmpty(Model.EstimatedCostPerPerson))
+            {
+                <div class="form-group" style="height:80%">
+                    <legend class="align-self-left" style="width: 100%; overflow: hidden; height: 150px; line-height: 30px;">
+                         @Model.EstimatedCostPerPerson
+                    </legend>
+                </div>                
+            }
+        </div>
+    </div>
+</div>
+<div style="margin-bottom: 5px; display: -webkit-box; -webkit-box-orient: horizontal;" class="row panel">
+    <div class="col-xl-12">
+        <div class="panel-content" style="margin-top:15px;">
+            <h3>Zadeklarowani uczestnicy</h3>
+            <div class="frame-wrap">
+                <table class="table m-0 mylist">
+                    <thead>
+                        <tr>
+                            <th>Imię i nazwisko</th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*@foreach (var item in Model.Groups)
+                            {
+                                <tr onclick="location.href = '/Group/Details?id=@item.Id';">
+                                    <td scope="row">@Html.ActionLink(item.Name, "Details", "Group", new { id = item.Id })</td>
+                                    <td>@item.Description</td>
+                                </tr>
+                            }*@
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-content" style="margin-top:15px;padding:10px;">
+            <button type="button" class="btn btn-light waves-effect waves-themed" onclick="location.href = '/Eventovo/MyEvents';">Wróć</button>
+        </div>
+    </div>
+</div>

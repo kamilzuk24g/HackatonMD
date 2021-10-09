@@ -22,7 +22,8 @@ namespace SmartAdmin.WebUI.Models
         public decimal? filterPriceTo { get; set; }
         public DateTime? filterTimeFrom { get; set; }
         public DateTime? filterTimeTo { get; set; }
-        public int filterPeople { get; set; }
+        public int? filterPeopleFrom { get; set; }
+        public int? filterPeopleTo { get; set; }
         public string filterTags { get; set; }
         public string filterCustom { get; set; }
 

@@ -1,8 +1,8 @@
 ﻿@{
     ViewData["Title"] = "It's Events time!";
-    ViewData["PageName"] = "tables_basic";
+    ViewData["PageName"] = "events_eventslist";
     ViewData["Heading"] = "<i class='fal fa-clock text-primary'></i> It's Events time!";
-    ViewData["Category1"] = "Tables";
+    ViewData["Category1"] = "events";
     //ViewData["PageDescription"] = "Documentation and examples for opt-in styling of tables (given their prevelant use in JavaScript plugins) with Bootstrap.";
 }
 @section HeadBlock {}
@@ -57,8 +57,8 @@
                        asp-route-filters.filterPriceTo="@filters.filterPriceTo"
                        asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
                        asp-route-filters.filterTimeTo="@filters.filterTimeTo"
-                       asp-route-filters.filterPeople="@filters.filterPeople"
-                       >
+                       asp-route-filters.filterPeopleFrom="@filters.filterPeopleFrom"
+                       asp-route-filters.filterPeopleTo="@filters.filterPeopleTo">
                         <span class="fal fa-search-plus mr-1"></span>
                         Filtruj
                     </a>
@@ -85,7 +85,8 @@
                                            asp-route-filters.filterPriceTo="@filters.filterPriceTo"
                                            asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
                                            asp-route-filters.filterTimeTo="@filters.filterTimeTo"
-                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                           asp-route-filters.filterPeopleFrom="@filters.filterPeopleFrom"
+                                           asp-route-filters.filterPeopleTo="@filters.filterPeopleTo">
                                             Id
                                         </a>
                                     </th>
@@ -101,7 +102,8 @@
                                            asp-route-filters.filterPriceTo="@filters.filterPriceTo"
                                            asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
                                            asp-route-filters.filterTimeTo="@filters.filterTimeTo"
-                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                           asp-route-filters.filterPeopleFrom="@filters.filterPeopleFrom"
+                                           asp-route-filters.filterPeopleTo="@filters.filterPeopleTo">
                                             Data
                                         </a>
                                     </th>
@@ -117,7 +119,8 @@
                                            asp-route-filters.filterPriceTo="@filters.filterPriceTo"
                                            asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
                                            asp-route-filters.filterTimeTo="@filters.filterTimeTo"
-                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                           asp-route-filters.filterPeopleFrom="@filters.filterPeopleFrom"
+                                           asp-route-filters.filterPeopleTo="@filters.filterPeopleTo">
                                             Tytół
                                         </a>
                                     </th>
@@ -133,7 +136,8 @@
                                            asp-route-filters.filterPriceTo="@filters.filterPriceTo"
                                            asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
                                            asp-route-filters.filterTimeTo="@filters.filterTimeTo"
-                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                           asp-route-filters.filterPeopleFrom="@filters.filterPeopleFrom"
+                                           asp-route-filters.filterPeopleTo="@filters.filterPeopleTo">
                                             Opis
                                         </a>
                                     </th>
@@ -149,7 +153,8 @@
                                            asp-route-filters.filterPriceTo="@filters.filterPriceTo"
                                            asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
                                            asp-route-filters.filterTimeTo="@filters.filterTimeTo"
-                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                           asp-route-filters.filterPeopleFrom="@filters.filterPeopleFrom"
+                                           asp-route-filters.filterPeopleTo="@filters.filterPeopleTo">
                                             Miejsce
                                         </a>
                                     </th>
@@ -165,7 +170,8 @@
                                            asp-route-filters.filterPriceTo="@filters.filterPriceTo"
                                            asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
                                            asp-route-filters.filterTimeTo="@filters.filterTimeTo"
-                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                           asp-route-filters.filterPeopleFrom="@filters.filterPeopleFrom"
+                                           asp-route-filters.filterPeopleTo="@filters.filterPeopleTo">
                                             Koszt
                                         </a>
                                     </th>
@@ -181,7 +187,8 @@
                                            asp-route-filters.filterPriceTo="@filters.filterPriceTo"
                                            asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
                                            asp-route-filters.filterTimeTo="@filters.filterTimeTo"
-                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                           asp-route-filters.filterPeopleFrom="@filters.filterPeopleFrom"
+                                           asp-route-filters.filterPeopleTo="@filters.filterPeopleTo">
                                             Czas
                                         </a>
                                     </th>
@@ -197,7 +204,8 @@
                                            asp-route-filters.filterPriceTo="@filters.filterPriceTo"
                                            asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
                                            asp-route-filters.filterTimeTo="@filters.filterTimeTo"
-                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                           asp-route-filters.filterPeopleFrom="@filters.filterPeopleFrom"
+                                           asp-route-filters.filterPeopleTo="@filters.filterPeopleTo">
                                             Osoby
                                         </a>
                                     </th>
@@ -213,7 +221,8 @@
                                            asp-route-filters.filterPriceTo="@filters.filterPriceTo"
                                            asp-route-filters.filterTimeFrom="@filters.filterTimeFrom"
                                            asp-route-filters.filterTimeTo="@filters.filterTimeTo"
-                                           asp-route-filters.filterPeople="@filters.filterPeople">
+                                           asp-route-filters.filterPeopleFrom="@filters.filterPeopleFrom"
+                                           asp-route-filters.filterPeopleTo="@filters.filterPeopleTo">
                                             Tagi
                                         </a>
                                     </th>
@@ -221,8 +230,8 @@
                                 <tr>
                                     <th></th>
                                     <th>
-                                        <input asp-for="@filters.filterDateFrom" type="date" id="tbxDateFrom" class="form-control tbx_filtr" value="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))" />
-                                        <input asp-for="@filters.filterDateTo" type="date" id="tbxDateTo" class="form-control tbx_filtr" value="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))" />
+                                        <input asp-for="@filters.filterDateFrom" type="date" placeholder="From" id="tbxDateFrom" class="form-control tbx_filtr" value="@(filters.filterDateFrom?.ToString("yyyy-MM-dd"))" />
+                                        <input asp-for="@filters.filterDateTo" type="date" placeholder="To" id="tbxDateTo" class="form-control tbx_filtr" value="@(filters.filterDateTo?.ToString("yyyy-MM-dd"))" />
                                     </th>
                                     <th>
                                         <input asp-for="@filters.filterTitle" id="tbxTitle" type="text" class="form-control tbx_filtr" value="@filters.filterTitle" />
@@ -234,15 +243,16 @@
                                         <input asp-for="@filters.filterPlace" id="tbxPlace" type="text" class="form-control tbx_filtr" value="@filters.filterPlace" />
                                     </th>
                                     <th>
-                                        <input asp-for="@filters.filterPriceFrom" id="tbxPriceFrom" type="text" class="form-control tbx_filtr" value="@filters.filterPriceFrom" />
-                                        <input asp-for="@filters.filterPriceTo" id="tbxPriceTo" type="text" class="form-control tbx_filtr" value="@filters.filterPriceTo" />
+                                        <input asp-for="@filters.filterPriceFrom" id="tbxPriceFrom" type="text" placeholder="From" class="form-control tbx_filtr" value="@filters.filterPriceFrom" />
+                                        <input asp-for="@filters.filterPriceTo" id="tbxPriceTo" type="text" placeholder="To" class="form-control tbx_filtr" value="@filters.filterPriceTo" />
                                     </th>
                                     <th>
-                                        <input asp-for="@filters.filterTimeFrom" id="tbxTimeFrom" type="text" class="form-control tbx_filtr" value="@filters.filterTimeFrom" />
-                                        <input asp-for="@filters.filterTimeTo" id="tbxTimeTo" type="text" class="form-control tbx_filtr" value="@filters.filterTimeTo" />
+                                        <input asp-for="@filters.filterTimeFrom" id="tbxTimeFrom" type="text" placeholder="From" class="form-control tbx_filtr" value="@filters.filterTimeFrom" />
+                                        <input asp-for="@filters.filterTimeTo" id="tbxTimeTo" type="text" placeholder="To" class="form-control tbx_filtr" value="@filters.filterTimeTo" />
                                     </th>
                                     <th>
-                                        <input asp-for="@filters.filterPeople" id="tbxPeople" type="text" class="form-control tbx_filtr" value="@filters.filterPeople" />
+                                        <input asp-for="@filters.filterPeopleFrom" id="tbxPeople" type="text" placeholder="From" class="form-control tbx_filtr" value="@filters.filterPeopleFrom" />
+                                        <input asp-for="@filters.filterPeopleTo" id="tbxPeople" type="text" placeholder="From" class="form-control tbx_filtr" value="@filters.filterPeopleTo" />
                                     </th>
                                     <th style="width: 120px;">
                                         <div class="input-group">

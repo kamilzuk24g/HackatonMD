@@ -1,5 +1,13 @@
 ﻿@model SmartAdmin.WebUI.ViewModels.GroupDetailsViewModel
 
+@{
+    ViewData["Title"] = "Groups";
+    ViewData["PageName"] = "group_details";
+    ViewData["Heading"] = "<i class='fal fa-info-circle'></i> Grupy";
+    ViewData["Category1"] = "Eventovo";
+    //ViewData["PageDescription"] = "Groups page";
+}
+@section HeadBlock {}
 
 <div id="panel-3" class="panel">
     <div class="panel-hdr color-success-600">
@@ -35,7 +43,7 @@
             <p>
                 @Model.Group.Description
             </p>
-        </div>        
+        </div>
         <div class="panel-content">
             <button type="button" class="btn btn-light waves-effect waves-themed" onclick="location.href = '/Group/Index';">Wróć</button>
         </div>

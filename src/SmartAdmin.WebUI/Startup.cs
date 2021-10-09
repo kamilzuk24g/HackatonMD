@@ -85,7 +85,7 @@ namespace SmartAdmin.WebUI
             {
                 routes.MapRoute(
                     "default",
-                    "{controller=Intel}/{action=Introduction}/{id?}");
+                    "{controller=events}/{action=eventslist}/{id?}");
             });
         }
     }

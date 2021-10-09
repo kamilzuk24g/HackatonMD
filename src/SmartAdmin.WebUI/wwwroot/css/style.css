@@ -57,6 +57,16 @@
     padding: 4px;
 }
 
+.tabpad4
+.table.mylist > thead > tr > th,
+.table.mylist > tbody > tr > th,
+.table.mylist > tfoot > tr > th,
+.table.mylist > thead > tr > td,
+.table.mylist > tbody > tr > td,
+.table.mylist > tfoot > tr > td {
+    padding: 10px;
+}
+
 .btn_print_last {
     float: right;
     margin-top: 2px;
