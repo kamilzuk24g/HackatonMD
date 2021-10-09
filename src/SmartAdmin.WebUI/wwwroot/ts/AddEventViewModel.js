@@ -53,7 +53,7 @@ var AddEvent;
             }
         };
         AddEventViewModel.prototype.onTagClick = function (item, event) {
-            //this.proposedParticipants.remove(event.target.textContent);
+            addEventViewModel.tags.remove(item);
         };
         AddEventViewModel.prototype.onAddMeClick = function () {
             if (this.confirmedParticipants.indexOf(this.currentUser()) === -1) {
@@ -83,4 +83,5 @@ var AddEvent;
     }());
 })(AddEvent || (AddEvent = {}));
 var formElement = document.getElementById("frmMain");
-ko.applyBindings(new AddEvent.AddEventViewModel(), formElement);
+var addEventViewModel = new AddEvent.AddEventViewModel();
+ko.applyBindings(addEventViewModel, formElement);

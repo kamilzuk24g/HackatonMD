@@ -77,7 +77,7 @@ namespace AddEvent {
         }
         
         public onTagClick(item: any, event: any): void {
-            //this.proposedParticipants.remove(event.target.textContent);
+            addEventViewModel.tags.remove(item);
         }
         
         public onAddMeClick(): void {
@@ -116,4 +116,5 @@ namespace AddEvent {
 }
 
 let formElement = document.getElementById("frmMain");
-ko.applyBindings(new AddEvent.AddEventViewModel(), formElement);
+let addEventViewModel = new AddEvent.AddEventViewModel();
+ko.applyBindings(addEventViewModel, formElement);
