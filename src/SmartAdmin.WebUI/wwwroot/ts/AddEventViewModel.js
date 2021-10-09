@@ -18,7 +18,17 @@ var AddEvent;
             this.tag = ko.observable("");
         }
         AddEventViewModel.prototype.onSaveClick = function () {
-            alert("aaa");
+            var serverViewModel = SaveEventServerModel.fromAddEventViewModel(this);
+            var serializedServerViewModel = JSON.stringify(serverViewModel);
+            var request = new XMLHttpRequest();
+            request.open("POST", "SaveEvent");
+            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    alert(request.responseText);
+                }
+            };
+            request.send(serializedServerViewModel);
         };
         AddEventViewModel.prototype.onTagAddClick = function () {
             if (IsNullUndefinedOrEmpty(this.tag())) {
@@ -46,6 +56,24 @@ var AddEvent;
         return AddEventViewModel;
     }());
     AddEvent.AddEventViewModel = AddEventViewModel;
+    var SaveEventServerModel = /** @class */ (function () {
+        function SaveEventServerModel() {
+        }
+        SaveEventServerModel.fromAddEventViewModel = function (viewModel) {
+            var result = new SaveEventServerModel();
+            result.EventName = viewModel.eventName();
+            result.EventPlace = viewModel.eventPlace();
+            result.EventDescription = viewModel.eventDescription();
+            result.EventDateString = viewModel.eventDateString();
+            result.EventTimeString = viewModel.eventTimeString();
+            result.ProposedParticipants = viewModel.proposedParticipants();
+            result.ConfirmedParticipants = viewModel.confirmedParticipants();
+            result.EstimatedCost = viewModel.estimatedCost();
+            result.Tags = viewModel.tags();
+            return result;
+        };
+        return SaveEventServerModel;
+    }());
 })(AddEvent || (AddEvent = {}));
 var formElement = document.getElementById("frmMain");
 ko.applyBindings(new AddEvent.AddEventViewModel(), formElement);

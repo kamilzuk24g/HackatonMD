@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace SmartAdmin.WebUI.ViewModels
 {
+    public class GroupedMyEventsViewModel
+    {
+        public string Date { get; set; }
+
+        public List<MyEventViewModel> DayEvents { get; set; }
+    }
+
     public class MyEventViewModel
     {
         public int Id { get; set; }
