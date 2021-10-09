@@ -165,8 +165,15 @@ namespace SmartAdmin.WebUI.Controllers
                 {
                     Name = pp,
                     IsProposed = true
-                }).Concat(eventData.ConfirmedParticipants.Select(cp => new EventParticipant { Name = cp}).ToList()).ToList()
+                }).Concat(eventData.ConfirmedParticipants.Select(cp => new EventParticipant { Name = cp})).ToList(),
+                Tags = eventData.Tags.Select(t => new Tag
+                {
+                    Name = t
+                }).ToList()
             };
+
+            this.applicationDbContext.Events.Add(databaseModel);
+            await this.applicationDbContext.SaveChangesAsync();
             
             return Ok();
         }
