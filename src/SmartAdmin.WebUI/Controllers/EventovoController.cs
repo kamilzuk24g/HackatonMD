@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SmartAdmin.WebUI.ViewModels;
 using SmartAdmin.WebUI.Data;
 using SmartAdmin.WebUI.Models;
+using SmartAdmin.WebUI.Data.Models;
 
 namespace SmartAdmin.WebUI.Controllers
 {
@@ -120,6 +121,68 @@ namespace SmartAdmin.WebUI.Controllers
             };
 
             return View(viewModel);
+        }
+
+        public IActionResult TakePart(int id)
+        {
+            var eventDates = this.applicationDbContext.ProposedEventDates.Where(x => x.EventId == id).ToList();
+
+            if (eventDates.Count == 1)
+            {
+                var part = new Data.Models.EventParticipant()
+                {
+                    EventId = id,
+                    Name = User.Identity.Name
+                };
+                this.applicationDbContext.EventParticipants.Add(part);
+                this.applicationDbContext.SaveChanges();
+
+                this.applicationDbContext.EventParticipantSelectedProposedDate.Add(new Data.Models.EventParticipantSelectedProposedDate()
+                {
+                    Date = eventDates[0].ProposedDate,
+                    EventParticipantId = part.Id
+                });
+                this.applicationDbContext.SaveChanges();
+
+                return RedirectToAction("Details", new { id = id });
+            }
+
+            var viewModel = new TakePartViewModel()
+            {
+                EventId = id,
+                Dates = eventDates.Select(x => x.ProposedDate).ToList()
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult TakePart(TakePartViewModel viewModel)
+        {
+            if (!viewModel.SelectedDates.Any(x => x.Selected))
+            {
+                ViewBag.Message = "Wybierz chociaż jeden pasujący Ci termin";
+
+                return View(viewModel);
+            }
+
+            var eventParticipant = new EventParticipant()
+            {
+                EventId = viewModel.EventId,
+                Name = User.Identity.Name
+            };
+            this.applicationDbContext.EventParticipants.Add(eventParticipant);
+            this.applicationDbContext.SaveChanges();
+
+            this.applicationDbContext.EventParticipantSelectedProposedDate.AddRange(viewModel.SelectedDates.Where(x => x.Selected)
+                .Select(x => new EventParticipantSelectedProposedDate()
+                {
+                    EventParticipantId = eventParticipant.Id,
+                    Date = x.Date
+                }));
+            this.applicationDbContext.SaveChanges();
+
+            return RedirectToAction("Details", new { id = viewModel.EventId });
         }
 
         public IActionResult Leave(int id)
