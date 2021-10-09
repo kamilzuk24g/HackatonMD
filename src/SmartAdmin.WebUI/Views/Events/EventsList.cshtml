@@ -29,7 +29,7 @@
 
     <div class="col-lg-12 col-xl-12">
 
-        <form asp-page="/events/EventsList" method="get">
+        <form asp-page="/EventsList" method="get">
 
             <div id="panel-8" class="panel">
                 <div class="panel-hdr">
@@ -281,35 +281,35 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Id)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.FinalEventDate)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.EventName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.EventDescription)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.EventPlace)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.EstimatedCostPerPerson)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Duration)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.PeopleCount)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Tags)
-                                            </td>
-                                        </tr>
+                                    <tr onclick="location.href = '@(Url.Action("Details", "Eventovo", new { id = item.Id }))'">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FinalEventDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EventName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EventDescription)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EventPlace)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EstimatedCostPerPerson)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Duration)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PeopleCount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Tags)
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
