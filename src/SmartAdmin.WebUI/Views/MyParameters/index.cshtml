@@ -1,4 +1,7 @@
 ﻿@model SmartAdmin.WebUI.ViewModels.MyParametersViewModel
+@{
+    ViewData["PageName"] = "myparameters_index";
+}
 
 <div class="fs-lg fw-300 p-5 bg-white border-faded rounded mb-g">
     <h3 class="mb-g">
@@ -15,7 +18,6 @@
 
             @if (Model?.Success == false)
             {
-
                 <div class="alert alert-danger" role="alert">
                     <strong>Wystąpił błąd, dane nie zstały zapisane.</strong>
                 </div>
