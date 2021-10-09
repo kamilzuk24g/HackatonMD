@@ -22,20 +22,20 @@ namespace SmartAdmin.WebUI.Models
                 controller.ViewBag.LayoutSettings = Enabled;
 
                 // SmartAdmin Default Settings
-                controller.ViewBag.App =  "SmartAdmin";
-                controller.ViewBag.AppName =  "SmartAdmin WebApp";
-                controller.ViewBag.AppFlavor =  "ASP.NET Core 2.2";
-                controller.ViewBag.AppFlavorSubscript =  "SEED";
-                controller.ViewBag.User =  "Dr. Codex Lantern";
-                controller.ViewBag.Email =  "drlantern@gotbootstrap.com";
-                controller.ViewBag.Twitter =  "codexlantern";
-                controller.ViewBag.Avatar =  "avatar-admin.png";
-                controller.ViewBag.Version =  "4.0.2";
-                controller.ViewBag.Bs4v =  "4.3";
-                controller.ViewBag.Logo =  "logo.png";
-                controller.ViewBag.LogoM =  "logo.png";
-                controller.ViewBag.Copyright =  "2019 © SmartAdmin by&nbsp;<a href='https = //www.gotbootstrap.com' class='text-primary fw-500' title='gotbootstrap.com' target='_blank'>gotbootstrap.com</a>";
-                controller.ViewBag.CopyrightInverse =  "2019 © SmartAdmin by&nbsp;<a href='https = //www.gotbootstrap.com' class='text-white opacity-40 fw-500' title='gotbootstrap.com' target='_blank'>gotbootstrap.com</a>";
+                controller.ViewBag.App = "Eventovo";
+                controller.ViewBag.AppName = "Eventovo";
+                controller.ViewBag.AppFlavor = "Eventovo";
+                controller.ViewBag.AppFlavorSubscript = "";
+                controller.ViewBag.User = "Dr. Codex Lantern";
+                controller.ViewBag.Email = "drlantern@gotbootstrap.com";
+                controller.ViewBag.Twitter = "codexlantern";
+                controller.ViewBag.Avatar = "avatar-admin.png";
+                controller.ViewBag.Version = "4.0.2";
+                controller.ViewBag.Bs4v = "4.3";
+                controller.ViewBag.Logo = "logo.png";
+                controller.ViewBag.LogoM = "logo.png";
+                controller.ViewBag.Copyright = "2019 © Eventovo by&nbsp;<a href='https = //www.gotbootstrap.com' class='text-primary fw-500' title='gotbootstrap.com' target='_blank'>gotbootstrap.com</a>";
+                controller.ViewBag.CopyrightInverse = "2019 © Eventovo by&nbsp;<a href='https = //www.gotbootstrap.com' class='text-white opacity-40 fw-500' title='gotbootstrap.com' target='_blank'>gotbootstrap.com</a>";
             }
         }
 
