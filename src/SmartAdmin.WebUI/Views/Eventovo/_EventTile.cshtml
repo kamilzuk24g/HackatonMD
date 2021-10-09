@@ -12,17 +12,16 @@
                 <legend class="align-self-center" style="text-align: -webkit-center;">@Model.Title</legend>
             </div>
             <div class="form-group" style="height:100%">
-                <div class="row" style="height:20%; margin-bottom: 20px;">                    
+                <div class="row" style="height:20%; margin-bottom: 20px;">
                     <div class="col align-self-md-center p-2 bg-primary-400 rounded-pill" style="text-align: -webkit-center;">
                         <div>
                             <legend style=" white-space: nowrap;">W dniu @Model.StartDate.ToLongDateString()</legend>
                         </div>
-                    </div>                    
+                    </div>
                     <div class="col align-self-md-center p-2 bg-primary-400 rounded-pill" style="text-align: -webkit-center;">
                         <div style="display:inline-flex">
-                            @*<i class="fal fa-cog"></i>*@
                             <i class="fal fa-map-marker-alt fa-2x"></i>
-                            <legend style="display:inline">@Model.Place</legend>
+                            <legend style="display:inline;white-space: nowrap;">@Model.Place</legend>
                         </div>
                     </div>
                     <div class="col" style="text-align: -webkit-center;">
