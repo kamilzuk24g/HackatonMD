@@ -39,7 +39,9 @@ namespace SmartAdmin.WebUI.Controllers
                     PeopleMax = filterParams.PeopleMax,
                     PeopleMin = filterParams.PeopleMin,
                     PriceMax = filterParams.PriceMax,
-                    PriceMin = filterParams.PriceMin
+                    PriceMin = filterParams.PriceMin,
+                    DurationFrom = filterParams.DurationFrom,
+                    DurationTo = filterParams.DurationTo
                 });
             }
 
@@ -60,6 +62,8 @@ namespace SmartAdmin.WebUI.Controllers
                     filterParams.PriceMin = viewModel.PriceMin;
                     filterParams.PeopleMax = viewModel.PeopleMax;
                     filterParams.PeopleMin = viewModel.PeopleMin;
+                    filterParams.DurationFrom = viewModel.DurationFrom;
+                    filterParams.DurationTo = viewModel.DurationTo;
                 }
                 else
                 {
@@ -72,7 +76,9 @@ namespace SmartAdmin.WebUI.Controllers
                             PriceMax = viewModel.PriceMax,
                             PriceMin = viewModel.PriceMin,
                             PeopleMax = viewModel.PeopleMax,
-                            PeopleMin = viewModel.PeopleMin
+                            PeopleMin = viewModel.PeopleMin,
+                            DurationFrom = viewModel.DurationFrom,
+                            DurationTo = viewModel.DurationTo
                         });
                 }
 

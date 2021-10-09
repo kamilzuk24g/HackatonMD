@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 
 namespace SmartAdmin.WebUI.Controllers
 {
+    using System.Linq;
+    using System.Security.Claims;
+    using SmartAdmin.WebUI.Data;
+
     public class EventsController : Controller
     {
         //private readonly IDBService _iDBService;
@@ -20,10 +24,30 @@ namespace SmartAdmin.WebUI.Controllers
         //    return View();
         //}
 
+        private ApplicationDbContext applicationDbContext;
+
+        public EventsController(ApplicationDbContext applicationDbContext)
+        {
+            this.applicationDbContext = applicationDbContext;
+        }
+
         public IActionResult EventsList(EventsListFilterModel filters)
         {
             if (filters == null)
-                filters = new EventsListFilterModel();
+            {
+                var filterParams = this.applicationDbContext.UserFilterParameters.FirstOrDefault(x => x.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier));
+                filters = new EventsListFilterModel
+                {
+                    filterDateFrom = filterParams.DateFrom,
+                    filterDateTo = filterParams.DateTo,
+                    filterPriceFrom = filterParams.PriceMin,
+                    filterPriceTo = filterParams.PriceMax,
+                    // filterTimeFrom = filterParams.DurationFrom,
+                    // filterTimeTo = filterParams.DurationTo,
+                    // filterPeople = filterParams.PeopleMin,
+                    // filterPeople = filterParams.PeopleMax,
+                };
+            }
 
             ViewData.Add("filters", filters);
             int Paging = 100;

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartAdmin.WebUI.Data;
 
 namespace SmartAdmin.WebUI.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211009051524_UserFilterParametersAddDuration")]
+    partial class UserFilterParametersAddDuration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -281,9 +283,9 @@ namespace SmartAdmin.WebUI.Data.Migrations
 
                     b.Property<DateTime?>("DateTo");
 
-                    b.Property<decimal?>("DurationFrom");
+                    b.Property<int?>("DurationFrom");
 
-                    b.Property<decimal?>("DurationTo");
+                    b.Property<int?>("DurationTo");
 
                     b.Property<int?>("PeopleMax");
 

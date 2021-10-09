@@ -14,5 +14,7 @@
         public DateTime? DateTo { get; set; }
         public int? PeopleMin { get; set; }
         public int? PeopleMax { get; set; }
+        public decimal? DurationFrom { get; set; }
+        public decimal? DurationTo { get; set; }
     }
 }
