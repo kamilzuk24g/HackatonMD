@@ -7,6 +7,15 @@
     <div class="col-xl-8">
         <div class="form-group" style="align-items: center; align-content: center;">
             <legend class="align-self-center" style="text-align: -webkit-center;">@Model.Title</legend>
+
+            @if (!Model.UserTakesPartInEvent)
+            {
+                <button type="button" class="btn btn-light waves-effect waves-themed" onclick="location.href = '/Eventovo/TakePart?id=@Model.Id;">Weź udział</button>
+            }
+            else
+            {
+                <button type="button" class="btn btn-light waves-effect waves-themed" onclick="location.href = '/Eventovo/Leave?id=@Model.Id';">Opuść wydarzenie</button>
+            }
         </div>
         <div class="form-group" style="height:100%">
             <div class="row" style="height:20%; margin-bottom: 20px;">
@@ -55,17 +64,44 @@
                 <table class="table m-0 mylist">
                     <thead>
                         <tr>
-                            <th>Imię i nazwisko</th>                            
+                            <th>Imię i nazwisko</th>
+                            @foreach (var date in Model.ProposedEventDates)
+                            {
+                                <th>@date.Date.ToShortDateString()</th>
+                            }
                         </tr>
                     </thead>
-                    <tbody>
-                        @*@foreach (var item in Model.Groups)
+                    <tbody>                        
+                        @foreach (var user in Model.EventParticipants)
+                        {
+                        <tr>
+                            <td>@user.Name</td>
+
+                            @foreach (var date in Model.ProposedEventDates)
                             {
-                                <tr onclick="location.href = '/Group/Details?id=@item.Id';">
-                                    <td scope="row">@Html.ActionLink(item.Name, "Details", "Group", new { id = item.Id })</td>
-                                    <td>@item.Description</td>
-                                </tr>
-                            }*@
+                                if (user.SelectedDates.Contains(date.Date))
+                                {
+                                    <td>
+                                        <ul class="fa-ul">
+                                            <li><i class="fa-li fa fa-check-square"></i></li>
+                                        </ul>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+
+                            }
+                        </tr>
+                        }     
+                        <tr>
+                            <td></td>
+                            @foreach (var date in Model.ProposedEventDates)
+                            {
+                                <td>@date.Count</td>
+                            }
+                        </tr>
                     </tbody>
                 </table>
             </div>

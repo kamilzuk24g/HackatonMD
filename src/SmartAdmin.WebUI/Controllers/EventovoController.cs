@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SmartAdmin.WebUI.ViewModels;
 using SmartAdmin.WebUI.Data;
+using SmartAdmin.WebUI.Models;
 
 namespace SmartAdmin.WebUI.Controllers
 {
@@ -69,9 +70,40 @@ namespace SmartAdmin.WebUI.Controllers
         {
             var eventDetails = this.applicationDbContext.Events.FirstOrDefault(x => x.Id == id);
 
-            var eventDates = this.applicationDbContext.ProposedEventDates.Where(x => x.EventId == id).ToList();
+            var eventDates = this.applicationDbContext.ProposedEventDates.Where(x => x.EventId == id)
+                .Select(x => new ProposedEventDatesWithSummary()
+                {
+                    Date = x.ProposedDate
+                }).ToList();
 
-            var eventParticipants = this.applicationDbContext.EventParticipants.Where(x => x.EventId == id).ToList();
+            var eventParticipantsTmp = this.applicationDbContext.EventParticipants.Where(x => x.EventId == id).ToList();
+            var eventParticipants = new List<EventParticipantExtended>();
+            foreach (var item in eventParticipantsTmp)
+            {
+                var dates = this.applicationDbContext.EventParticipantSelectedProposedDate
+                    .Where(x => x.EventParticipantId == item.Id)
+                    .Select(x => x.Date).ToList();
+
+                eventParticipants.Add(new EventParticipantExtended()
+                {
+                    Id = item.Id,
+                    EventId = item.EventId,
+                    IsProposed = item.IsProposed,
+                    Name = item.Name,
+                    SelectedDates = dates
+                });
+
+                foreach (var date in eventDates)
+                {
+                    foreach (var selectedDate in dates)
+                    {
+                        if (date.Date == selectedDate)
+                        {
+                            date.Count++;
+                        }
+                    }
+                }
+            }
 
             var viewModel = new EventDetailsViewModel()
             {
@@ -82,10 +114,23 @@ namespace SmartAdmin.WebUI.Controllers
                 IconPath = @"/img/demo/rails.png",
                 Title = eventDetails.EventName,
                 EstimatedCostPerPerson = eventDetails.EstimatedCostPerPerson.HasValue ? eventDetails.EstimatedCostPerPerson.Value.ToString("N2") + "PLN" : "",
-                ProposedEventDates = eventDates.Select(x => x.ProposedDate).ToList(),
+                ProposedEventDates = eventDates,
+                EventParticipants = eventParticipants,
+                UserTakesPartInEvent = eventParticipants.Any(x => x.Name == User.Identity.Name)
             };
 
             return View(viewModel);
+        }
+
+        public IActionResult Leave(int id)
+        {
+            var eventParticipant = this.applicationDbContext.EventParticipants.FirstOrDefault(x => x.EventId == id && x.Name == User.Identity.Name);
+            var selectedDates = this.applicationDbContext.EventParticipantSelectedProposedDate.Where(x => x.EventParticipantId == eventParticipant.Id).ToList();
+            this.applicationDbContext.RemoveRange(selectedDates);
+            this.applicationDbContext.Remove(eventParticipant);
+            this.applicationDbContext.SaveChanges();
+
+            return RedirectToAction("Details", new { id = id });
         }
     }
 }

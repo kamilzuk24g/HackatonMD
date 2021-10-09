@@ -13,6 +13,7 @@ namespace SmartAdmin.WebUI.Data
         public DbSet<ProposedEventDate> ProposedEventDates { get; set; }
         public DbSet<EventParticipant> EventParticipants { get; set; }
         public DbSet<UserInGroup> UserInGroup { get; set; }
+        public DbSet<EventParticipantSelectedProposedDate> EventParticipantSelectedProposedDate { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
