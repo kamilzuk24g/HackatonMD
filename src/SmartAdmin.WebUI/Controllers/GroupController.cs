@@ -74,7 +74,7 @@
                 IsMy = true
             };
 
-            return View("Index", viewModel);
+            return View(viewModel);
         }
 
         public IActionResult JoinGroup(int groupId)

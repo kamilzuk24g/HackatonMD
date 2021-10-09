@@ -108,9 +108,9 @@ namespace SmartAdmin.WebUI.Controllers
         {
             var eventDates = this.applicationDbContext.ProposedEventDates.Where(x => x.EventId == id).ToList();
 
-            if (eventDates.Count == 1)
+            if (eventDates.Count <= 1)
             {
-                var part = new Data.Models.EventParticipant()
+                var part = new EventParticipant()
                 {
                     EventId = id,
                     Name = User.Identity.Name
@@ -118,12 +118,15 @@ namespace SmartAdmin.WebUI.Controllers
                 this.applicationDbContext.EventParticipants.Add(part);
                 this.applicationDbContext.SaveChanges();
 
-                this.applicationDbContext.EventParticipantSelectedProposedDate.Add(new Data.Models.EventParticipantSelectedProposedDate()
+                if (eventDates?.Any() == true)
                 {
-                    Date = eventDates[0].ProposedDate,
-                    EventParticipantId = part.Id
-                });
-                this.applicationDbContext.SaveChanges();
+                    this.applicationDbContext.EventParticipantSelectedProposedDate.Add(new EventParticipantSelectedProposedDate()
+                    {
+                        Date = eventDates[0].ProposedDate,
+                        EventParticipantId = part.Id
+                    });
+                    this.applicationDbContext.SaveChanges();
+                }
 
                 return RedirectToAction("Details", new { id = id });
             }

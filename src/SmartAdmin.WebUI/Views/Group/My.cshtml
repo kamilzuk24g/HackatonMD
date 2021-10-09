@@ -2,8 +2,8 @@
 
 @{
     ViewData["Title"] = "Groups";
-    ViewData["PageName"] = "group_index";
-    ViewData["Heading"] = "<i class='fal fa-info-circle'></i> Grupy";
+    ViewData["PageName"] = "group_my";
+    ViewData["Heading"] = "<i class='fal fa-info-circle'></i> Moje Grupy";
     ViewData["Category1"] = "Eventovo";
     //ViewData["PageDescription"] = "Groups page";
 }
@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <label class="form-label" for="Name" style="float: left; margin-right: 5px; margin-top:7px;">Wyszukaj</label>
                     @Html.TextBoxFor(x => x.SearchValue, "", new { @class = "form-control", style = "margin-left:10px;margin-right:10px;", placeholder = "Wpisz frazę lub hasztag" })
-                    <button class="btn btn-primary ml-auto waves-effect waves-themed" type="submit" style="margin-left:5px">Wyszukaj</button>                   
+                    <button class="btn btn-primary ml-auto waves-effect waves-themed" type="submit" style="margin-left:5px">Wyszukaj</button>
                     @Html.ValidationMessageFor(x => x.SearchValue)
                 </div>
             }
