@@ -30,6 +30,7 @@ namespace SmartAdmin.WebUI.Controllers
                  (paricipant, @event) =>
                      new MyEventViewModel()
                      {
+                         Id = @event.Id,
                          Description = @event.EventDescription,
                          StartDate = @event.FinalEventDate ?? DateTime.Now,
                          Place = @event.EventPlace,
