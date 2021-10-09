@@ -33,7 +33,8 @@ namespace SmartAdmin.WebUI.Controllers
                          Description = @event.EventDescription,
                          StartDate = @event.FinalEventDate.Value,
                          Place = @event.EventPlace,
-                         Title = @event.EventName
+                         Title = @event.EventName,
+                         IconPath = @"/img/demo/mvc.png"
                      }
                  )
                 .ToList();
