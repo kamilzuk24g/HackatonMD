@@ -31,7 +31,7 @@
                 {
                     <div class="col align-self-md-center p-2 bg-primary-400 rounded-pill" style="text-align: -webkit-center;">
                         <div>
-                            <legend>W dniu @Model.FinalEventDate.Value.ToShortDateString()</legend>
+                            <legend style=" white-space: nowrap;">@Model.FinalEventDate.Value.ToLongDateString()</legend>
                         </div>
                     </div>
                 }
@@ -42,7 +42,7 @@
                         var max = Model.ProposedEventDates.Max(x => x.Count);
                         @if (max > 0)
                         {
-                            var dates = string.Join(", ", Model.ProposedEventDates.Where(x => x.Count == max).Select(x => x.Date.ToShortDateString()));
+                            var dates = string.Join(", ", Model.ProposedEventDates.Where(x => x.Count == max).Select(x => x.Date.ToLongDateString()));
 
                             <div class="col align-self-md-center p-2 bg-primary-400 rounded-pill" style="text-align: -webkit-center;">
                                 <div>
