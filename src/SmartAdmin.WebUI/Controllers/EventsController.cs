@@ -37,24 +37,5 @@ namespace SmartAdmin.WebUI.Controllers
 
             return View();
         }
-
-        // GET: NumeryController
-        public async Task<ActionResult> Index(EventsListFilterModel filters)
-        {
-            if (filters == null)
-                filters = new EventsListFilterModel();
-
-            ViewData.Add("filters", filters);
-            int Paging = 100;
-            //int.TryParse(Configuration["Paging"], out Paging);
-
-            //return View(await _iDBService.EventsGet(
-            //    filters.sortColumn, filters.filtrStatus,
-            //    filters.filtrDataOd, filters.filtrDataDo,
-            //    filters.pageIndex, Paging
-            //    ));
-
-            return View();
-        }
     }
 }

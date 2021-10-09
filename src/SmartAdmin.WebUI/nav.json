@@ -6,6 +6,10 @@
       "icon": "fal fa-info-circle",
       "items": [
         {
+          "title": "Wyszukaj Eventy",
+          "href": "events_eventslist.html"
+        },
+        {
           "title": "Wyszukaj grupę",
           "href": "group_index.html"
         },
