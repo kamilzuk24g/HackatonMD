@@ -16,6 +16,8 @@ var AddEvent;
             this.estimatedCost = ko.observable("");
             this.tags = ko.observableArray([]);
             this.tag = ko.observable("");
+            var currentUserText = document.getElementById("hdfCurrentUser").textContent;
+            this.currentUser = ko.observable(currentUserText);
         }
         AddEventViewModel.prototype.onSaveClick = function () {
             var serverViewModel = SaveEventServerModel.fromAddEventViewModel(this);
@@ -53,6 +55,11 @@ var AddEvent;
         AddEventViewModel.prototype.onTagClick = function (item, event) {
             //this.proposedParticipants.remove(event.target.textContent);
         };
+        AddEventViewModel.prototype.onAddMeClick = function () {
+            if (this.confirmedParticipants.indexOf(this.currentUser()) === -1) {
+                this.confirmedParticipants.push(this.currentUser());
+            }
+        };
         return AddEventViewModel;
     }());
     AddEvent.AddEventViewModel = AddEventViewModel;
@@ -77,4 +84,3 @@ var AddEvent;
 })(AddEvent || (AddEvent = {}));
 var formElement = document.getElementById("frmMain");
 ko.applyBindings(new AddEvent.AddEventViewModel(), formElement);
-//# sourceMappingURL=AddEventViewModel.js.map

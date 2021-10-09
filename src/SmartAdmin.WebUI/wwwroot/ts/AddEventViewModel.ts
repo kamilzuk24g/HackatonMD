@@ -15,6 +15,7 @@ namespace AddEvent {
         public estimatedCost: KnockoutObservable<string>;
         public tags: KnockoutObservableArray<string>;
         public tag: KnockoutObservable<string>;
+        public currentUser: KnockoutObservable<string>;
         
         constructor() {
             this.eventName = ko.observable<string>("");
@@ -29,6 +30,9 @@ namespace AddEvent {
             this.estimatedCost = ko.observable<string>("");
             this.tags = ko.observableArray<string>([]);
             this.tag = ko.observable<string>("");
+            
+            let currentUserText = document.getElementById("hdfCurrentUser").textContent;
+            this.currentUser = ko.observable<string>(currentUserText);
         }
         
         public onSaveClick(): void {
@@ -74,6 +78,12 @@ namespace AddEvent {
         
         public onTagClick(item: any, event: any): void {
             //this.proposedParticipants.remove(event.target.textContent);
+        }
+        
+        public onAddMeClick(): void {
+            if (this.confirmedParticipants.indexOf(this.currentUser()) === -1) {
+                this.confirmedParticipants.push(this.currentUser());
+            }
         }
     }
     

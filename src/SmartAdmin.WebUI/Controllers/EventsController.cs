@@ -143,6 +143,8 @@ namespace SmartAdmin.WebUI.Controllers
 
         public async Task<IActionResult> AddEvent()
         {
+            string username = User.Identity.Name;
+            ViewData["CurrentUser"] = username;
             return View("~/Views/Eventovo/addevent.cshtml");
         }
 
