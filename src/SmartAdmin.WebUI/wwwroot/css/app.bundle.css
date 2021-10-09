@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /* #GLOBAL IMPORTS
 ========================================================================== */
 /* #BOOTSTRAP AND MIXINS - Base Unmodified Bootstrap file with theme mixins
@@ -843,7 +843,7 @@ html body {
   min-height: 1px;
   padding: 0 2rem; }
   .page-logo img {
-    width: auto;
+    width: 60px;
     height: auto; }
   .page-logo .page-logo-link {
     -webkit-box-flex: 1;
