@@ -88,7 +88,7 @@
                         <div class="col">
                             <div>
                                 <label class="form-label" for="msConfirmedParticipants">Potwierdzeni uczestnicy</label>
-                                <select id="msConfirmedParticipants" multiple="" class="form-control">
+                                <select id="msConfirmedParticipants" multiple="" class="form-control" data-bind="options: confirmedParticipants">
                                 </select>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                         <div class="col">
                             <div class="row" style="height: 100%">
                                 <div class="col" style="display: flex; justify-content: flex-end;">
-                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end">Dodaj mnie</button>
+                                    <button type="button" class="btn btn-primary" style="height: 50%; display: flex; align-self: flex-end" data-bind="click: onAddMeClick">Dodaj mnie</button>
                                 </div>
                             </div>
                         </div>
@@ -161,6 +161,8 @@
             </div>
         </div>
     </fieldset>
+    
+    <div data-bind="text: currentUser" id="hdfCurrentUser" style="display: none" >@ViewData["CurrentUser"]</div>
 </form>
 
 <script type="text/javascript" src="~/js/knockout-3.5.1.js"></script>
